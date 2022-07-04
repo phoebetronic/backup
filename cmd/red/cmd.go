@@ -1,10 +1,9 @@
 package red
 
 import (
+	"github.com/phoebetron/backup/cmd/red/upl"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/tracer"
-
-	"github.com/phoebetron/backup/cmd/red/upl"
 )
 
 const (

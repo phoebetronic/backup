@@ -6,13 +6,12 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/phoebetron/backup/pkg/cli/apicliaws"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/logger"
 	"github.com/xh3b4sd/redigo"
 	"github.com/xh3b4sd/redigo/pkg/backup"
 	"github.com/xh3b4sd/tracer"
-
-	"github.com/phoebetron/backup/pkg/cli/apicliaws"
 )
 
 type run struct {

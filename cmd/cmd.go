@@ -1,13 +1,12 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/xh3b4sd/tracer"
-
 	"github.com/phoebetron/backup/cmd/com"
 	"github.com/phoebetron/backup/cmd/red"
 	"github.com/phoebetron/backup/cmd/tra"
 	"github.com/phoebetron/backup/cmd/ver"
+	"github.com/spf13/cobra"
+	"github.com/xh3b4sd/tracer"
 )
 
 var (
