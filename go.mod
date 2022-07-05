@@ -8,12 +8,10 @@ require (
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.18
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.0
 	github.com/go-numb/go-ftx v0.0.0-20220423024940-92aa582133ad
-	github.com/phoebetron/trades v0.2.1
+	github.com/phoebetron/trades v0.2.3
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
 	github.com/xh3b4sd/framer v0.1.0
-	github.com/xh3b4sd/logger v0.5.3
-	github.com/xh3b4sd/redigo v0.26.0
 	github.com/xh3b4sd/tracer v0.5.1
 	google.golang.org/protobuf v1.26.0
 )
@@ -36,8 +34,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sts v1.16.8 // indirect
 	github.com/aws/smithy-go v1.12.0 // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
-	github.com/go-redsync/redsync/v4 v4.5.0 // indirect
-	github.com/go-stack/stack v1.8.1 // indirect
+	github.com/go-redsync/redsync/v4 v4.5.1 // indirect
 	github.com/gomodule/redigo v1.8.8 // indirect
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
@@ -51,4 +48,5 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.34.0 // indirect
+	github.com/xh3b4sd/redigo v0.27.0 // indirect
 )

@@ -46,12 +46,12 @@ func (r *run) franew() framer.Frames {
 		}
 	}
 
-	var dfr []framer.Frame
+	var hfr []framer.Frame
 	{
-		dfr = fra.Exa().Hour()
+		hfr = fra.Exa().Hour()
 	}
 
-	return dfr
+	return hfr
 }
 
 func (r *run) fraend() time.Time {

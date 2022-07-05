@@ -2,10 +2,10 @@ package upl
 
 import "time"
 
-const (
-	filfmt = "06-01-02.15-04-05"
-)
+func bacfmt(tim time.Time) string {
+	return tim.UTC().Format("06-01-02")
+}
 
-func timfmt(tim time.Time) string {
-	return tim.UTC().Truncate(time.Minute).Format(filfmt)
+func scrfmt(tim time.Time) string {
+	return tim.UTC().Format("06-01-02 15:04:05")
 }
