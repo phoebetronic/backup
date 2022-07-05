@@ -2,6 +2,7 @@ package upl
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"path/filepath"
 	"time"
@@ -50,7 +51,7 @@ func (r *run) run(cmd *cobra.Command, args []string) error {
 	// --------------------------------------------------------------------- //
 
 	{
-		r.log.Log(r.ctx, "level", "info", "message", "creating redis backup")
+		fmt.Printf("starting redis backup\n")
 	}
 
 	{
@@ -77,7 +78,7 @@ func (r *run) run(cmd *cobra.Command, args []string) error {
 	}
 
 	{
-		r.log.Log(r.ctx, "level", "info", "message", "uploading redis backup", "siz", r.siz(inf.Size()))
+		fmt.Printf("uploading %s\n", r.siz(inf.Size()))
 	}
 
 	var buc string
@@ -95,6 +96,10 @@ func (r *run) run(cmd *cobra.Command, args []string) error {
 		if err != nil {
 			return tracer.Mask(err)
 		}
+	}
+
+	{
+		fmt.Printf("\nfinished redis backup\n")
 	}
 
 	return nil

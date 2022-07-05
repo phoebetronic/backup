@@ -6,8 +6,8 @@ import (
 
 const (
 	use = "upl"
-	sho = "Upload redis snapshots to S3."
-	lon = "Upload redis snapshots to S3."
+	sho = "Upload backups to S3."
+	lon = "Upload backups to S3."
 )
 
 type Config struct{}

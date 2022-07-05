@@ -9,9 +9,10 @@ import (
 	"github.com/xh3b4sd/budget/v3"
 	"github.com/xh3b4sd/budget/v3/pkg/breaker"
 	"github.com/xh3b4sd/tracer"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func (f *FTX) Search(sta time.Time, end time.Time) []trades.Trade {
+func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
 	var err error
 
 	var bre budget.Interface
@@ -33,9 +34,9 @@ func (f *FTX) Search(sta time.Time, end time.Time) []trades.Trade {
 		}
 	}
 
-	var all []trades.Trade
+	var all []*trades.Trade
 	for {
-		var tra []trades.Trade
+		var tra []*trades.Trade
 		{
 			act := func() error {
 				tra, err = f.search(sta, end)
@@ -61,20 +62,22 @@ func (f *FTX) Search(sta time.Time, end time.Time) []trades.Trade {
 		}
 
 		{
-			end = trafir(tra).TS.Add(-1)
+			end = trafir(tra).TS.AsTime().Add(-1)
 		}
 	}
 
 	sort.SliceStable(all, func(i, j int) bool {
-		return all[i].TS.Unix() < all[j].TS.Unix()
+		return all[i].TS.AsTime().Unix() < all[j].TS.AsTime().Unix()
 	})
 
 	return all
 
 }
 
-func (f *FTX) search(sta time.Time, end time.Time) ([]trades.Trade, error) {
-	var tra []trades.Trade
+func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
+	var err error
+
+	var res *markets.ResponseForTrades
 	{
 		req := &markets.RequestForTrades{
 			ProductCode: f.market.Ass() + "-perp",
@@ -82,41 +85,42 @@ func (f *FTX) search(sta time.Time, end time.Time) ([]trades.Trade, error) {
 			End:         end.Unix(),
 		}
 
-		res, err := f.client.Trades(req)
+		res, err = f.client.Trades(req)
 		if err != nil {
 			return nil, tracer.Mask(err)
 		}
+	}
 
-		for _, r := range *res {
-			var t trades.Trade
-			{
-				t.LI = r.Liquidation
-				t.PR = r.Price
-				t.TS = r.Time
-			}
+	var tra []*trades.Trade
+	for _, r := range *res {
+		t := &trades.Trade{}
+		{
+			t.LI = r.Liquidation
+			t.PR = float32(r.Price)
+			t.TS = timestamppb.New(r.Time)
+		}
 
-			if r.Side == "buy" {
-				t.LO = r.Size
-			}
+		if r.Side == "buy" {
+			t.LO = float32(r.Size)
+		}
 
-			if r.Side == "sell" {
-				t.SH = r.Size
-			}
+		if r.Side == "sell" {
+			t.SH = float32(r.Size)
+		}
 
-			{
-				tra = append(tra, t)
-			}
+		{
+			tra = append(tra, t)
 		}
 	}
 
 	return tra, nil
 }
 
-func trafir(tra []trades.Trade) trades.Trade {
+func trafir(tra []*trades.Trade) *trades.Trade {
 	fir := tra[0]
 
 	for _, t := range tra {
-		if t.TS.Before(fir.TS) {
+		if t.TS.AsTime().Before(fir.TS.AsTime()) {
 			fir = t
 		}
 	}

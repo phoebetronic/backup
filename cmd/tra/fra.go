@@ -66,7 +66,7 @@ func (r *run) fraend() time.Time {
 func (r *run) frasta() time.Time {
 	var err error
 
-	var tra trades.Trade
+	var tra *trades.Trade
 	{
 		tra, err = r.stotra.Latest()
 		if err != nil {
@@ -78,5 +78,5 @@ func (r *run) frasta() time.Time {
 		panic(fmt.Sprintf("trade %s must not be empty", tra.TS))
 	}
 
-	return tra.TS
+	return tra.TS.AsTime()
 }
