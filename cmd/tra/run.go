@@ -8,6 +8,7 @@ import (
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/framer"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type run struct {
@@ -41,12 +42,16 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			fmt.Printf("fetching trades between %s and %s\n", timfmt(h.Sta), timfmt(h.End))
 		}
 
-		var tra []trades.Trade
+		tra := &trades.Trades{}
 		{
-			tra = r.cliftx.Search(h.Sta, h.End)
+			tra.EX = r.stotra.Market().Exc()
+			tra.AS = r.stotra.Market().Ass()
+			tra.ST = timestamppb.New(h.Sta)
+			tra.EN = timestamppb.New(h.End)
+			tra.TR = r.cliftx.Search(h.Sta, h.End)
 		}
 
-		if len(tra) == 0 {
+		if len(tra.TR) == 0 {
 			continue
 		}
 

@@ -25,9 +25,8 @@ func (a *AWS) Upload(buc string, key string, fil *os.File) error {
 	var rea io.Reader
 	{
 		rea = &Reader{
-			fp:      fil,
-			size:    inf.Size(),
-			signMap: map[int64]struct{}{},
+			fil: fil,
+			siz: inf.Size(),
 		}
 	}
 

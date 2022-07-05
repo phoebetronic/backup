@@ -8,13 +8,14 @@ require (
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.18
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.0
 	github.com/go-numb/go-ftx v0.0.0-20220423024940-92aa582133ad
-	github.com/phoebetron/trades v0.1.2
+	github.com/phoebetron/trades v0.2.1
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
 	github.com/xh3b4sd/framer v0.1.0
 	github.com/xh3b4sd/logger v0.5.3
 	github.com/xh3b4sd/redigo v0.26.0
 	github.com/xh3b4sd/tracer v0.5.1
+	google.golang.org/protobuf v1.26.0
 )
 
 require (

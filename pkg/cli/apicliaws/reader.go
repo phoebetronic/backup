@@ -7,36 +7,30 @@ import (
 )
 
 type Reader struct {
-	fp      *os.File
-	size    int64
-	read    int64
-	signMap map[int64]struct{}
-	mux     sync.Mutex
+	fil *os.File
+	mux sync.Mutex
+	siz int64
+	tot int64
 }
 
-func (r *Reader) Read(p []byte) (int, error) {
-	return r.fp.Read(p)
+func (r *Reader) Read(byt []byte) (int, error) {
+	return r.fil.Read(byt)
 }
 
-func (r *Reader) ReadAt(p []byte, off int64) (int, error) {
-	n, err := r.fp.ReadAt(p, off)
+func (r *Reader) ReadAt(byt []byte, off int64) (int, error) {
+	num, err := r.fil.ReadAt(byt, off)
 	if err != nil {
-		return n, err
+		return num, err
 	}
 
 	r.mux.Lock()
-	// Ignore the first signature call
-	if _, ok := r.signMap[off]; ok {
-		// Got the length have read( or means has uploaded), and you can construct your message
-		r.read += int64(n)
-		fmt.Printf("\rtotal read:%d    progress:%d%%", r.read, int(float32(r.read*100)/float32(r.size)))
-	} else {
-		r.signMap[off] = struct{}{}
-	}
+	r.tot += int64(num)
+	fmt.Printf("\ruploaded %d%%", int(float32(r.tot*100)/float32(r.siz)))
 	r.mux.Unlock()
-	return n, err
+
+	return num, nil
 }
 
-func (r *Reader) Seek(offset int64, whence int) (int64, error) {
-	return r.fp.Seek(offset, whence)
+func (r *Reader) Seek(off int64, whe int) (int64, error) {
+	return r.fil.Seek(off, whe)
 }
