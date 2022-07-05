@@ -1,84 +1,89 @@
 package upl
 
 import (
-	"context"
+	"bytes"
 	"fmt"
-	"os"
 	"path/filepath"
 	"time"
 
 	"github.com/phoebetron/backup/pkg/cli/apicliaws"
+	"github.com/phoebetron/trades/sto/tradesredis"
+	"github.com/phoebetron/trades/typ/trades"
 	"github.com/spf13/cobra"
-	"github.com/xh3b4sd/logger"
-	"github.com/xh3b4sd/redigo"
-	"github.com/xh3b4sd/redigo/pkg/backup"
-	"github.com/xh3b4sd/tracer"
+	"github.com/xh3b4sd/framer"
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type run struct {
-	aws *apicliaws.AWS
-	bac backup.Interface
-	ctx context.Context
-	fla *fla
-	log logger.Interface
+	cliaws *apicliaws.AWS
+	cmdfla *fla
+	misfra framer.Frames
+	stotra trades.Storage
 }
 
-func (r *run) run(cmd *cobra.Command, args []string) error {
+func (r *run) run(cmd *cobra.Command, args []string) {
 	var err error
 
 	{
-		r.fla.Verify()
+		r.cmdfla.Verify()
 	}
 
 	// --------------------------------------------------------------------- //
 
 	{
-		r.aws = apicliaws.Default()
+		r.cliaws = apicliaws.Default()
 	}
 
 	{
-		r.bac = redigo.Default().Backup()
+		r.stotra = tradesredis.Default()
 	}
 
 	{
-		r.ctx = context.Background()
+		r.misfra = r.franew()
 	}
 
+	// --------------------------------------------------------------------- //
+
+	var sta time.Time
+	var end time.Time
 	{
-		r.log = logger.Default()
+		sta = r.misfra.Min().Sta
+		end = r.misfra.Max().End
 	}
 
 	// --------------------------------------------------------------------- //
 
 	{
-		fmt.Printf("starting redis backup\n")
+		fmt.Printf("starting backup between %s and %s\n", scrfmt(sta), scrfmt(end))
 	}
 
+	tra := &trades.Trades{}
 	{
-		err := r.bac.Create()
+		tra.EX = r.stotra.Market().Exc()
+		tra.AS = r.stotra.Market().Ass()
+		tra.ST = timestamppb.New(sta)
+		tra.EN = timestamppb.New(end)
+		tra.TR = r.tra()
+	}
+
+	var byt []byte
+	{
+		byt, err = proto.Marshal(tra)
 		if err != nil {
-			return tracer.Mask(err)
+			panic(err)
 		}
 	}
 
-	var fil *os.File
+	var rea bytes.Reader
 	{
-		fil, err = os.Open(filepath.Join(r.fla.Dat, r.fla.Fil))
-		if err != nil {
-			return tracer.Mask(err)
-		}
+		rea = *bytes.NewReader(byt)
 	}
 
-	var inf os.FileInfo
-	{
-		inf, err = fil.Stat()
-		if err != nil {
-			return tracer.Mask(err)
-		}
-	}
+	// --------------------------------------------------------------------- //
 
 	{
-		fmt.Printf("uploading %s\n", r.siz(inf.Size()))
+		fmt.Printf("buffered %s\n", r.siz(rea.Size()))
 	}
 
 	var buc string
@@ -88,19 +93,34 @@ func (r *run) run(cmd *cobra.Command, args []string) error {
 
 	var pre string
 	{
-		pre = timfmt(time.Now())
+		pre = fmt.Sprintf("tra-raw.exc-%s.ass-%s", r.stotra.Market().Exc(), r.stotra.Market().Ass())
+	}
+
+	var suf string
+	{
+		suf = fmt.Sprintf("%s.pb.raw", bacfmt(sta))
 	}
 
 	{
-		err := r.aws.Upload(buc, filepath.Join(pre, r.fla.Fil), fil)
+		err := r.cliaws.Upload(buc, filepath.Join(pre, suf), rea)
 		if err != nil {
-			return tracer.Mask(err)
+			panic(err)
 		}
 	}
 
+	// --------------------------------------------------------------------- //
+
 	{
-		fmt.Printf("\nfinished redis backup\n")
+		fmt.Printf("\nremoving trades between %s and %s\n", scrfmt(sta), scrfmt(end))
 	}
 
-	return nil
+	{
+		r.rem()
+	}
+
+	// --------------------------------------------------------------------- //
+
+	{
+		fmt.Printf("finished backup\n")
+	}
 }

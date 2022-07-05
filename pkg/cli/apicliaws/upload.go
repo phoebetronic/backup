@@ -1,9 +1,8 @@
 package apicliaws
 
 import (
+	"bytes"
 	"context"
-	"io"
-	"os"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/feature/s3/manager"
@@ -11,30 +10,15 @@ import (
 	"github.com/xh3b4sd/tracer"
 )
 
-func (a *AWS) Upload(buc string, key string, fil *os.File) error {
-	var err error
-
-	var inf os.FileInfo
-	{
-		inf, err = fil.Stat()
-		if err != nil {
-			return tracer.Mask(err)
-		}
-	}
-
-	var rea io.Reader
-	{
-		rea = &Reader{
-			fil: fil,
-			siz: inf.Size(),
-		}
-	}
-
+func (a *AWS) Upload(buc string, key string, rea bytes.Reader) error {
 	{
 		inp := &s3.PutObjectInput{
 			Bucket: aws.String(buc),
 			Key:    aws.String(key),
-			Body:   rea,
+			Body: &Reader{
+				rea: rea,
+				siz: rea.Size(),
+			},
 		}
 
 		_, err := manager.NewUploader(a.S3, par).Upload(context.Background(), inp)

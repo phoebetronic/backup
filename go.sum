@@ -59,10 +59,8 @@ github.com/go-redis/redis/v7 v7.4.0 h1:7obg6wUoj05T0EpY0o8B59S9w5yeMWql7sw2kwNW1
 github.com/go-redis/redis/v7 v7.4.0/go.mod h1:JDNMw23GTyLNC4GZu9njt15ctBQVn7xjRfnwdHj/Dcg=
 github.com/go-redis/redis/v8 v8.11.4 h1:kHoYkfZP6+pe04aFTnhDH6GDROa5yJdHJVNxV3F46Tg=
 github.com/go-redis/redis/v8 v8.11.4/go.mod h1:2Z2wHZXdQpCDXEGzqMockDpNyYvi2l4Pxt6RJr792+w=
-github.com/go-redsync/redsync/v4 v4.5.0 h1:kJjDzn/iEbU+K/6w+O8b1rzuYIK/nP9EQRc5nXKW9x4=
-github.com/go-redsync/redsync/v4 v4.5.0/go.mod h1:AfhgO1E6W3rlUTs6Zmz/B6qBZJFasV30lwo7nlizdDs=
-github.com/go-stack/stack v1.8.1 h1:ntEHSVwIt7PNXNpgPmVfMrNhLtgjlmnZha2kOpuRiDw=
-github.com/go-stack/stack v1.8.1/go.mod h1:dcoOX6HbPZSZptuspn9bctJ+N/CnF5gGygcUP3XYfe4=
+github.com/go-redsync/redsync/v4 v4.5.1 h1:T97UCaY8MfQg/6kB7MTuimF4tnLOCdJbsvIoN5KmjZE=
+github.com/go-redsync/redsync/v4 v4.5.1/go.mod h1:AfhgO1E6W3rlUTs6Zmz/B6qBZJFasV30lwo7nlizdDs=
 github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0/go.mod h1:fyg7847qk6SyHyPtNmDHnmrv/HOrqktSC+C9fM+CJOE=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.3.2/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
@@ -123,8 +121,8 @@ github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
-github.com/phoebetron/trades v0.2.1 h1:wJ9yCuPuVF5z8bFIkT5qeiRk1z7xZ/iZG3fTIxEjLHg=
-github.com/phoebetron/trades v0.2.1/go.mod h1:V8lWnAR7qbSq5wtGBi43TRLc9F2oGaQzKu9GX36BJkY=
+github.com/phoebetron/trades v0.2.3 h1:r9Us7YLWOwtSZKrszzoh7XmfZoa2j1hErsx6yEssBcE=
+github.com/phoebetron/trades v0.2.3/go.mod h1:vKic4hLLlFyMSYrv+ZWS4GbtAfhtSKkH89lYAvncW8M=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rafaeljusto/redigomock v2.4.0+incompatible h1:d7uo5MVINMxnRr20MxbgDkmZ8QRfevjOVgEa4n0OZyY=
@@ -149,10 +147,8 @@ github.com/xh3b4sd/budget/v3 v3.2.2 h1:RE9EEuSFaYY7fp+n4k7lBoUHoULpN83aB/ZfKOqNW
 github.com/xh3b4sd/budget/v3 v3.2.2/go.mod h1:tPs6GKNZYdues0/j37g/aSfb+OOhr3j20zRc3lVflDQ=
 github.com/xh3b4sd/framer v0.1.0 h1:hEzjLfir47tjS3uVkSC6HjnT8Xz7l1NPDNX2lmbTrko=
 github.com/xh3b4sd/framer v0.1.0/go.mod h1:LXuYCOHKoD8JFfDbJQ7RTFutQiYv80jO7v4lzVxUiYY=
-github.com/xh3b4sd/logger v0.5.3 h1:dQaiN7pGxgm99m6mF7gUx+/g1TMlN/rNte6445EHcww=
-github.com/xh3b4sd/logger v0.5.3/go.mod h1:PTSV8DSuxflhKBKaIxc9QK0IbhHUhQAKWUwn+adQoLA=
-github.com/xh3b4sd/redigo v0.26.0 h1:j+zobDhO5nwTAcweCx6OwrkbeB9f9ZrLdGJMMXodIe4=
-github.com/xh3b4sd/redigo v0.26.0/go.mod h1:+HWr4dWVUKLaVuBPPeCCnf992F7OyshDW06MBUYW5WY=
+github.com/xh3b4sd/redigo v0.27.0 h1:9k1UoPhRZn5lVCNfJOfGOgLTS/m87JPnXKH9MKf5ceM=
+github.com/xh3b4sd/redigo v0.27.0/go.mod h1:O1Z2GvRSryypiApFjQsZBkLkgajkbtBuXEf2nB66kBQ=
 github.com/xh3b4sd/tracer v0.5.1 h1:Y4639ve7PT+1MSiq0I3Yi7vOeJAYBKgzlSR68jA+SuI=
 github.com/xh3b4sd/tracer v0.5.1/go.mod h1:sYg6KI0svCEb2an8Hf0cYR0rOY94bIrN27TRsJi4+x4=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

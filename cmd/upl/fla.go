@@ -1,28 +1,35 @@
 package upl
 
 import (
+	"time"
+
 	"github.com/spf13/cobra"
 )
 
 type fla struct {
-	Con bool
-	Dat string
-	Fil string
+	Time time.Time
+	time string
 }
 
 func (f *fla) Create(cmd *cobra.Command) {
-	cmd.Flags().BoolVarP(&f.Con, "con", "c", false, "Run a continuous process for uploading periodically.")
-	cmd.Flags().StringVarP(&f.Dat, "dat", "d", "", "The data folder on the file system.")
-	cmd.Flags().StringVarP(&f.Fil, "fil", "f", "dump.rdb", "The snapshot file on the file system.")
+	cmd.Flags().StringVarP(&f.time, "tim", "t", "", "Time string for backup data start date in form of yy-mm-dd.")
 }
 
 func (f *fla) Verify() {
+	if f.time == "" {
+		panic("-t/--tim must not be empty")
+	}
+
 	{
-		if f.Dat == "" {
-			panic("-d/--dat must not be empty")
+		tim, err := time.Parse("06-01-02", f.time)
+		if err != nil {
+			panic(err)
 		}
-		if f.Fil == "" {
-			panic("-f/--fil must not be empty")
-		}
+
+		f.Time = tim
+	}
+
+	if f.Time.Day() != 1 {
+		panic("-t/--tim must specify the first day of the month")
 	}
 }

@@ -24,7 +24,7 @@ func New(con Config) (*cobra.Command, error) {
 			Use:   use,
 			Short: sho,
 			Long:  lon,
-			RunE:  (&run{fla: f}).run,
+			Run:   (&run{cmdfla: f}).run,
 		}
 	}
 

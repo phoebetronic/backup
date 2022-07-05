@@ -68,7 +68,7 @@ func New() (*cobra.Command, error) {
 			Use:   use,
 			Short: sho,
 			Long:  lon,
-			RunE:  (&run{}).run,
+			Run:   (&run{}).run,
 			CompletionOptions: cobra.CompletionOptions{
 				DisableDefaultCmd: true,
 			},

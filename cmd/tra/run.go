@@ -12,8 +12,8 @@ import (
 )
 
 type run struct {
-	cmdfla *fla
 	cliftx *apicliftx.FTX
+	cmdfla *fla
 	misfra framer.Frames
 	stotra trades.Storage
 }
@@ -22,6 +22,8 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	{
 		r.cmdfla.Verify()
 	}
+
+	// --------------------------------------------------------------------- //
 
 	{
 		r.cliftx = apicliftx.Default()
@@ -39,7 +41,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 
 	for _, h := range r.misfra {
 		{
-			fmt.Printf("fetching trades between %s and %s\n", timfmt(h.Sta), timfmt(h.End))
+			fmt.Printf("fetching trades between %s and %s\n", scrfmt(h.Sta), scrfmt(h.End))
 		}
 
 		tra := &trades.Trades{}
