@@ -4,6 +4,7 @@ import (
 	"github.com/phoebetron/backup/cmd/com"
 	"github.com/phoebetron/backup/cmd/tra"
 	"github.com/phoebetron/backup/cmd/upl"
+	"github.com/phoebetron/backup/cmd/val"
 	"github.com/phoebetron/backup/cmd/ver"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/tracer"
@@ -50,6 +51,16 @@ func New() (*cobra.Command, error) {
 		}
 	}
 
+	var cmdVal *cobra.Command
+	{
+		c := val.Config{}
+
+		cmdVal, err = val.New(c)
+		if err != nil {
+			return nil, tracer.Mask(err)
+		}
+	}
+
 	var cmdVer *cobra.Command
 	{
 		c := ver.Config{}
@@ -89,6 +100,7 @@ func New() (*cobra.Command, error) {
 		c.AddCommand(cmdCom)
 		c.AddCommand(cmdTra)
 		c.AddCommand(cmdUpl)
+		c.AddCommand(cmdVal)
 		c.AddCommand(cmdVer)
 	}
 

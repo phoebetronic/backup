@@ -1,7 +1,6 @@
-package upl
+package val
 
 import (
-	"bytes"
 	"fmt"
 	"path/filepath"
 	"time"
@@ -12,7 +11,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/framer"
 	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type run struct {
@@ -55,35 +53,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	// --------------------------------------------------------------------- //
 
 	{
-		fmt.Printf("starting backup between %s and %s\n", scrfmt(sta), scrfmt(end))
-	}
-
-	tra := &trades.Trades{}
-	{
-		tra.EX = r.stotra.Market().Exc()
-		tra.AS = r.stotra.Market().Ass()
-		tra.ST = timestamppb.New(sta)
-		tra.EN = timestamppb.New(end)
-		tra.TR = r.tra()
-	}
-
-	var byt []byte
-	{
-		byt, err = proto.Marshal(tra)
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	var rea bytes.Reader
-	{
-		rea = *bytes.NewReader(byt)
-	}
-
-	// --------------------------------------------------------------------- //
-
-	{
-		fmt.Printf("buffered %s\n", r.siz(rea.Size()))
+		fmt.Printf("checking backup between %s and %s\n", scrfmt(sta), scrfmt(end))
 	}
 
 	var buc string
@@ -101,26 +71,29 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		suf = fmt.Sprintf("%s.pb.raw", bacfmt(sta))
 	}
 
+	var byt []byte
 	{
-		err := r.cliaws.Upload(buc, filepath.Join(pre, suf), rea)
+		byt, err = r.cliaws.Download(buc, filepath.Join(pre, suf))
 		if err != nil {
 			panic(err)
 		}
 	}
 
-	// --------------------------------------------------------------------- //
-
+	tra := &trades.Trades{}
 	{
-		fmt.Printf("removing trades between %s and %s\n", scrfmt(sta), scrfmt(end))
+		err := proto.Unmarshal(byt, tra)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	{
-		r.rem()
-	}
-
-	// --------------------------------------------------------------------- //
-
-	{
-		fmt.Printf("finished backup\n")
+		fmt.Printf("EX:    %s\n", tra.EX)
+		fmt.Printf("AS:    %s\n", tra.AS)
+		fmt.Printf("ST:    %s\n", scrfmt(tra.ST.AsTime()))
+		fmt.Printf("EN:    %s\n", scrfmt(tra.EN.AsTime()))
+		fmt.Printf("TR:    %d\n", len(tra.TR))
+		fmt.Printf("FI:    %s\n", scrfmt(tra.TR[0].TS.AsTime()))
+		fmt.Printf("LA:    %s\n", scrfmt(tra.TR[len(tra.TR)-1].TS.AsTime()))
 	}
 }
