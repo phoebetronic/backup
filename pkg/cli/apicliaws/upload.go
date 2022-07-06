@@ -3,6 +3,7 @@ package apicliaws
 import (
 	"bytes"
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/feature/s3/manager"
@@ -25,6 +26,10 @@ func (a *AWS) Upload(buc string, key string, rea bytes.Reader) error {
 		if err != nil {
 			return tracer.Mask(err)
 		}
+	}
+
+	{
+		fmt.Printf("\n")
 	}
 
 	return nil
