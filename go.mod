@@ -13,7 +13,7 @@ require (
 	github.com/xh3b4sd/budget/v3 v3.2.2
 	github.com/xh3b4sd/framer v0.1.0
 	github.com/xh3b4sd/tracer v0.5.1
-	google.golang.org/protobuf v1.26.0
+	google.golang.org/protobuf v1.28.0
 )
 
 require (
