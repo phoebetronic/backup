@@ -8,7 +8,7 @@ const (
 	use = "dow"
 	sho = "Download backups from S3."
 	lon = `Download backups from S3. When downloading backups from S3, trades are
-downloaded in monhtly partitions of single ticks. Below is shown how to feed
+downloaded in monthly partitions of single ticks. Below is shown how to feed
 backup trades of a specific month back into Redis.
 
     backup dow --tim 22-06-01
