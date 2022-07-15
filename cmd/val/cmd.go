@@ -6,8 +6,14 @@ import (
 
 const (
 	use = "val"
-	sho = "Validate raw backup data"
-	lon = "Validate raw backup data"
+	sho = "Validate raw backup data."
+	lon = `Validate raw backup data. Before backups can be inspected and validated, the
+monthly partitions have to be downloaded from S3. Below is shown how to read
+backup trades of a specific month back from Redis once they have been
+downloaded, in order to check the content of the downloaded partitions.
+
+    backup val --tim 22-06-01
+`
 )
 
 type Config struct{}
