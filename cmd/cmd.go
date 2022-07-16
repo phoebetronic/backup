@@ -7,6 +7,7 @@ import (
 	"github.com/phoebetron/backup/cmd/upl"
 	"github.com/phoebetron/backup/cmd/val"
 	"github.com/phoebetron/backup/cmd/ver"
+	"github.com/phoebetron/backup/cmd/win"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/tracer"
 )
@@ -82,6 +83,16 @@ func New() (*cobra.Command, error) {
 		}
 	}
 
+	var cmdWin *cobra.Command
+	{
+		c := win.Config{}
+
+		cmdWin, err = win.New(c)
+		if err != nil {
+			return nil, tracer.Mask(err)
+		}
+	}
+
 	// --------------------------------------------------------------------- //
 
 	var c *cobra.Command
@@ -114,6 +125,7 @@ func New() (*cobra.Command, error) {
 		c.AddCommand(cmdUpl)
 		c.AddCommand(cmdVal)
 		c.AddCommand(cmdVer)
+		c.AddCommand(cmdWin)
 	}
 
 	return c, nil
