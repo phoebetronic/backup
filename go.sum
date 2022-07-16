@@ -3,6 +3,8 @@ git.sr.ht/~sbinet/gg v0.3.1/go.mod h1:KGYtlADtqsqANL9ueOFkWymvzUvLMQllU5Ixo+8v3p
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/FZambia/sentinel v1.1.0 h1:qrCBfxc8SvJihYNjBWgwUI93ZCvFe/PJIPTHKmlp8a8=
 github.com/FZambia/sentinel v1.1.0/go.mod h1:ytL1Am/RLlAoAXG6Kj5LNuw/TRRQrv2rt2FT26vP5gI=
+github.com/MicahParks/peakdetect v0.0.6 h1:OzupTN1rWcjSCsDZrg+4w8D4FbDrR5WO4ItQOwCTwvk=
+github.com/MicahParks/peakdetect v0.0.6/go.mod h1:NcgqFDGbT9/nVTFdZKY8iLS8n1BSd9eKp+rbQ73A118=
 github.com/ajstarks/deck v0.0.0-20200831202436-30c9fc6549a9/go.mod h1:JynElWSGnm/4RlzPXRlREEwqTHAN3T56Bv2ITsFT3gY=
 github.com/ajstarks/deck/generate v0.0.0-20210309230005-c3f852c02e19/go.mod h1:T13YZdzov6OU0A1+RfKZiZN9ca6VeKdBdyDV+BY97Tk=
 github.com/ajstarks/svgo v0.0.0-20211024235047-1546f124cd8b h1:slYM766cy2nI3BwyRiyQj/Ud48djTMtMebDqepE95rw=
@@ -147,6 +149,8 @@ github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
+github.com/phoebetron/series v0.1.0 h1:N1o4daDM8qeuGgqxd6MILKu+A0Gya1zd4U+yGg+hcP0=
+github.com/phoebetron/series v0.1.0/go.mod h1:PFaDH2nz0VLLBSQMzpz8PSxXZY5QC9ucQhZJx1vYcjM=
 github.com/phoebetron/trades v0.3.1 h1:M8emCC1rWYfRtM+f2Xbkg6LioFedFvCLnxa2KWP/Bes=
 github.com/phoebetron/trades v0.3.1/go.mod h1:6Zb5Y7FxiZpt2hJtT8aSXHDSdKjPRgCGzxgoVk8qIT4=
 github.com/phpdave11/gofpdf v1.4.2/go.mod h1:zpO6xFn9yxo3YLyMvW8HcKWVdbNqgIfOOp2dXMnm1mY=
@@ -179,6 +183,8 @@ github.com/valyala/fasthttp v1.34.0/go.mod h1:epZA5N+7pY6ZaEKRmstzOuYJx9HI8DI1oa
 github.com/valyala/tcplisten v1.0.0/go.mod h1:T0xQ8SeCZGxckz9qRXTfG43PvQ/mcWh7FwZEA7Ioqkc=
 github.com/xh3b4sd/budget/v3 v3.2.2 h1:RE9EEuSFaYY7fp+n4k7lBoUHoULpN83aB/ZfKOqNWQ0=
 github.com/xh3b4sd/budget/v3 v3.2.2/go.mod h1:tPs6GKNZYdues0/j37g/aSfb+OOhr3j20zRc3lVflDQ=
+github.com/xh3b4sd/catch22 v0.1.0 h1:iTbHFjx41KzXKVMCbbcJX3omz7YvSte+kkUptZlOODA=
+github.com/xh3b4sd/catch22 v0.1.0/go.mod h1:dd/+T+udhc/GgP5F7UhKOX6cgtojJrSUkzFYjC478uM=
 github.com/xh3b4sd/framer v0.1.0 h1:hEzjLfir47tjS3uVkSC6HjnT8Xz7l1NPDNX2lmbTrko=
 github.com/xh3b4sd/framer v0.1.0/go.mod h1:LXuYCOHKoD8JFfDbJQ7RTFutQiYv80jO7v4lzVxUiYY=
 github.com/xh3b4sd/redigo v0.27.0 h1:9k1UoPhRZn5lVCNfJOfGOgLTS/m87JPnXKH9MKf5ceM=
@@ -246,6 +252,7 @@ golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898/go.mod h1:I/5z698sn9Ka8T
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 gonum.org/v1/gonum v0.11.0 h1:f1IJhK4Km5tBJmaiJXtk/PkL4cdVX6J+tGiM187uT5E=
+gonum.org/v1/gonum v0.11.0/go.mod h1:fSG4YDCxxUZQJ7rKsQrj0gMOg00Il0Z96/qMA4bVQhA=
 gonum.org/v1/plot v0.11.0 h1:z2ZkgNqW34d0oYUzd80RRlc0L9kWtenqK4kflZG1lGc=
 gonum.org/v1/plot v0.11.0/go.mod h1:fH9YnKnDKax0u5EzHVXvhN5HJwtMFWIOLNuhgUahbCQ=
 google.golang.org/protobuf v0.0.0-20200109180630-ec00e32a8dfd/go.mod h1:DFci5gLYBciE7Vtevhsrf46CRTquxDuWsQurQQe4oz8=

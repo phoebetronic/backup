@@ -70,15 +70,15 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		w = win.Bot(tra.TR, 60*time.Minute)
 	}
 
+	{
+		fmt.Printf("produced %d window frames within %s\n", len(w), time.Since(now).Round(10*time.Millisecond))
+	}
+
 	if r.cmdfla.CSV {
 		r.csv(w)
 	}
 
 	if r.cmdfla.Dra {
 		r.dra(w)
-	}
-
-	{
-		fmt.Printf("produced %d window frames within %s\n", len(w), time.Since(now).Round(10*time.Millisecond))
 	}
 }

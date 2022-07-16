@@ -7,12 +7,11 @@ import (
 	"strconv"
 
 	"github.com/phoebetron/backup/pkg/mis/win"
-	"github.com/phoebetron/trades/typ/trades"
 )
 
 func (r *run) dra(w []win.Window) {
 	{
-		p := "./dat/"
+		p := "./dat/dra"
 
 		err := os.MkdirAll(p, os.ModePerm)
 		if err != nil {
@@ -26,20 +25,13 @@ func (r *run) dra(w []win.Window) {
 	}
 
 	for i := r.cmdfla.Ind; i < r.cmdfla.Ind+max; i++ {
-		le := &trades.Trades{
-			TR: w[i].LE,
-		}
-		ri := &trades.Trades{
-			TR: w[i].RI,
-		}
-
 		var byt []byte
 		{
-			byt = ren(i, w[i].IN, le.PR().FL, ri.PR().FL)
+			byt = ren(i, w[i].IN, w[i].LE.PR().FL, w[i].RI.PR().FL)
 		}
 
 		{
-			pat := filepath.Join("dat", strconv.Itoa(i)+".gold.svg")
+			pat := filepath.Join("dat", "dra", strconv.Itoa(i)+".svg")
 			err := ioutil.WriteFile(pat, byt, 0600)
 			if err != nil {
 				panic(err)
