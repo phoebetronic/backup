@@ -15,7 +15,7 @@ func Bot(tr []*trades.Trade, le time.Duration) []Window {
 	var w []Window
 	for {
 		{
-			w = append(w, Window{})
+			w = append(w, Window{LE: &trades.Trades{}, RI: &trades.Trades{}})
 		}
 
 		var c int
@@ -35,7 +35,7 @@ func Bot(tr []*trades.Trade, le time.Duration) []Window {
 			}
 
 			{
-				w[c].LE = append(w[c].LE, tr[j])
+				w[c].LE.TR = append(w[c].LE.TR, tr[j])
 			}
 
 			{
@@ -54,7 +54,7 @@ func Bot(tr []*trades.Trade, le time.Duration) []Window {
 			}
 
 			{
-				w[c].RI = append(w[c].RI, tr[j])
+				w[c].RI.TR = append(w[c].RI.TR, tr[j])
 			}
 
 			var si float32
