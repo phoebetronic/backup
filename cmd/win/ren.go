@@ -11,15 +11,20 @@ import (
 	"gonum.org/v1/plot/vg/draw"
 )
 
-func ren(ind int, sin int, lef []float32, rig []float32) []byte {
+func ren(ind int, bin int, tin int, lef []float32, rig []float32) []byte {
+	var sta plotter.XYs
+	{
+		sta = append(sta, plotter.XY{X: float64(len(lef) + 1), Y: float64(rig[0])})
+	}
+
 	var bot plotter.XYs
 	{
-		bot = append(bot, plotter.XY{X: float64(len(lef) + 1), Y: float64(rig[0])})
+		bot = append(bot, plotter.XY{X: float64(len(lef) + bin), Y: float64(rig[bin])})
 	}
 
 	var top plotter.XYs
 	{
-		top = append(top, plotter.XY{X: float64(len(lef) + sin), Y: float64(rig[sin])})
+		top = append(top, plotter.XY{X: float64(len(lef) + tin), Y: float64(rig[tin])})
 	}
 
 	var xys plotter.XYs
@@ -43,27 +48,9 @@ func ren(ind int, sin int, lef []float32, rig []float32) []byte {
 	}
 
 	{
-		b, err := plotter.NewScatter(bot)
-		if err != nil {
-			panic(err)
-		}
-		b.GlyphStyle.Color = plotutil.Color(1)
-		b.GlyphStyle.Radius = 5
-		b.GlyphStyle.Shape = draw.PyramidGlyph{}
-		plo.Add(b)
-		plo.Legend.Add("bot", b)
-	}
-
-	{
-		t, err := plotter.NewScatter(top)
-		if err != nil {
-			panic(err)
-		}
-		t.GlyphStyle.Color = plotutil.Color(2)
-		t.GlyphStyle.Radius = 5
-		t.GlyphStyle.Shape = draw.PyramidGlyph{}
-		plo.Add(t)
-		plo.Legend.Add("top", t)
+		addsca(plo, sta, 1, "sta")
+		addsca(plo, bot, 2, "bot")
+		addsca(plo, top, 3, "top")
 	}
 
 	wri, err := plo.WriterTo(6*vg.Inch, 6*vg.Inch, "svg")
@@ -77,4 +64,16 @@ func ren(ind int, sin int, lef []float32, rig []float32) []byte {
 	}
 
 	return act.Bytes()
+}
+
+func addsca(plo *plot.Plot, xys plotter.XYs, ind int, des string) {
+	t, err := plotter.NewScatter(xys)
+	if err != nil {
+		panic(err)
+	}
+	t.GlyphStyle.Color = plotutil.Color(ind)
+	t.GlyphStyle.Radius = 5
+	t.GlyphStyle.Shape = draw.PyramidGlyph{}
+	plo.Add(t)
+	plo.Legend.Add(des, t)
 }

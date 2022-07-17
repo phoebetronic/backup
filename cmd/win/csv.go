@@ -16,6 +16,12 @@ import (
 	"github.com/phoebetron/series/spec"
 )
 
+const (
+	fratra = 0.70
+	frates = 0.15
+	fraval = 0.15
+)
+
 func (r *run) csv(w []win.Window) {
 	{
 		p := "./dat/csv"
@@ -59,7 +65,7 @@ func (r *run) csv(w []win.Window) {
 		}
 
 		{
-			flo = append(flo, append(buf.Diff(), v.SI))
+			flo = append(flo, append(buf.Diff(), v.BD, v.TD))
 		}
 	}
 
@@ -67,6 +73,8 @@ func (r *run) csv(w []win.Window) {
 	{
 		le1 = len(flo[0])
 	}
+
+	see := map[string]struct{}{}
 
 	var str [][]string
 	for _, v := range flo {
@@ -85,14 +93,6 @@ func (r *run) csv(w []win.Window) {
 			s = append(s, fmt.Sprintf("%.5f", f))
 		}
 
-		str = append(str, s)
-	}
-
-	byt := bytes.NewBuffer([]byte{})
-
-	see := map[string]struct{}{}
-	wri := csv.NewWriter(byt)
-	for _, s := range str {
 		var k string
 		{
 			k = strings.Join(s, ",")
@@ -106,16 +106,49 @@ func (r *run) csv(w []win.Window) {
 			see[k] = struct{}{}
 		}
 
-		{
-			err := wri.Write(s)
-			if err != nil {
-				panic(err)
-			}
-		}
+		str = append(str, s)
 	}
 
 	{
-		fmt.Printf("buffered %d window frames in .csv file\n", len(see))
+		a := 0
+		b := int(float64(len(str)) * (fratra))
+		c := int(float64(len(str)) * (fratra + frates))
+		d := int(float64(len(str)) * (fratra + frates + fraval))
+
+		r.wri(str[a:b], "tra")
+		r.wri(str[b:c], "tes")
+		r.wri(str[c:d], "val")
+	}
+}
+
+func (r *run) wri(str [][]string, des string) {
+	{
+		fmt.Printf("buffered %d window frames into %s.csv\n", len(str), des)
+	}
+
+	byt := bytes.NewBuffer([]byte{})
+	wri := csv.NewWriter(byt)
+
+	{
+		var s []string
+
+		for i := 0; i < len(str[0])-2; i++ {
+			s = append(s, fmt.Sprintf("%02d", i))
+		}
+
+		s = append(s, "BD", "TD")
+
+		err := wri.Write(s)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	for _, s := range str {
+		err := wri.Write(s)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	{
@@ -127,7 +160,7 @@ func (r *run) csv(w []win.Window) {
 	}
 
 	{
-		pat := filepath.Join("dat", "csv", "win.csv")
+		pat := filepath.Join("dat", "csv", des+".csv")
 		err := ioutil.WriteFile(pat, byt.Bytes(), 0600)
 		if err != nil {
 			panic(err)

@@ -27,7 +27,7 @@ func (r *run) dra(w []win.Window) {
 	for i := r.cmdfla.Ind; i < r.cmdfla.Ind+max; i++ {
 		var byt []byte
 		{
-			byt = ren(i, w[i].IN, w[i].LE.PR().FL, w[i].RI.PR().FL)
+			byt = ren(i, w[i].BI, w[i].TI, w[i].LE.PR().FL, w[i].RI.PR().FL)
 		}
 
 		{
