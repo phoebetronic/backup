@@ -46,6 +46,8 @@ jobs:
           test -z $(gofmt -l -s .)
 
       - name: "Check Go Linters"
+        env:
+          GL_DEBUG: "loader"
         run: |
           curl -LOs https://github.com/golangci/golangci-lint/releases/download/v1.46.2/golangci-lint-1.46.2-linux-amd64.tar.gz
           tar -xzf golangci-lint-1.46.2-linux-amd64.tar.gz
