@@ -57,14 +57,19 @@ func Bot(tr []*trades.Trade, le time.Duration) []Window {
 				w[c].RI.TR = append(w[c].RI.TR, tr[j])
 			}
 
-			var si float32
+			var de float32
 			{
-				si = inc(tr[e], tr[j])
+				de = del(tr[e], tr[j])
 			}
 
-			if si > w[c].SI {
-				w[c].IN = i
-				w[c].SI = si
+			if de < w[c].BD {
+				w[c].BI = i
+				w[c].BD = de
+			}
+
+			if de > w[c].TD {
+				w[c].TI = i
+				w[c].TD = de
 			}
 		}
 
@@ -78,22 +83,4 @@ func Bot(tr []*trades.Trade, le time.Duration) []Window {
 	}
 
 	return w
-}
-
-func dur(a *trades.Trade, b *trades.Trade) time.Duration {
-	return b.TS.AsTime().Sub(a.TS.AsTime())
-}
-
-func inc(a *trades.Trade, b *trades.Trade) float32 {
-	return (b.PR - a.PR) / a.PR
-}
-
-func rig(tr []*trades.Trade, i int, le time.Duration) int {
-	for p := i; p < len(tr); p++ {
-		if dur(tr[i], tr[p]) > le {
-			return p
-		}
-	}
-
-	return len(tr) - 1
 }
