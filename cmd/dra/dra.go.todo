@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/phoebetron/backup/pkg/mis/win"
+	"github.com/phoebetron/series/buck"
 )
 
-func (r *run) dra(w []win.Window) {
+func (r *run) dra(w []buck.Wind) {
 	{
 		p := "./dat/dra"
 

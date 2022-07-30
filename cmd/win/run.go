@@ -5,16 +5,23 @@ import (
 	"time"
 
 	"github.com/phoebetron/backup/pkg/cli/apicliaws"
-	"github.com/phoebetron/backup/pkg/mis/win"
+	"github.com/phoebetron/series/buff"
 	"github.com/phoebetron/trades/sto/tradesredis"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/framer"
 )
 
+const (
+	fratra = 0.70
+	frates = 0.15
+	fraval = 0.15
+)
+
 type run struct {
 	cliaws *apicliaws.AWS
 	cmdfla *fla
+	miscon buff.Conf
 	misfra framer.Frames
 	stotra trades.Storage
 }
@@ -33,11 +40,15 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	}
 
 	{
-		r.stotra = tradesredis.Default()
+		r.miscon = r.connew()
 	}
 
 	{
 		r.misfra = r.franew()
+	}
+
+	{
+		r.stotra = tradesredis.Default()
 	}
 
 	// --------------------------------------------------------------------- //
@@ -52,10 +63,8 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	// --------------------------------------------------------------------- //
 
 	{
-		fmt.Printf("creating frames between %s and %s\n", scrfmt(sta), scrfmt(end))
+		fmt.Printf("fetching trades between %s and %s\n", scrfmt(sta), scrfmt(end))
 	}
-
-	now := time.Now()
 
 	var tra *trades.Trades
 	{
@@ -65,20 +74,12 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		}
 	}
 
-	var w []win.Window
+	var fra []*trades.Trades
 	{
-		w = win.Bot(tra.TR, 60*time.Minute)
+		fra = tra.Frame(r.misfra)
 	}
 
-	{
-		fmt.Printf("produced %d window frames within %s\n", len(w), time.Since(now).Round(10*time.Millisecond))
-	}
-
-	if r.cmdfla.CSV {
-		r.csv(w)
-	}
-
-	if r.cmdfla.Dra {
-		r.dra(w)
+	for _, f := range fra {
+		r.hou(f)
 	}
 }
