@@ -12,12 +12,6 @@ import (
 	"github.com/xh3b4sd/framer"
 )
 
-const (
-	fratra = 0.70
-	frates = 0.15
-	fraval = 0.15
-)
-
 type run struct {
 	cliaws *apicliaws.AWS
 	cmdfla *fla
