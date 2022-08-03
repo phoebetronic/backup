@@ -31,11 +31,6 @@ func (r *run) ful(pat string) {
 		ndx = ind.Read(pat)
 	}
 
-	var enc map[string]string
-	{
-		enc = ndx.EncI()
-	}
-
 	var ful [][]string
 
 	for _, i := range ndx.Lis.Shfl() {
@@ -50,7 +45,7 @@ func (r *run) ful(pat string) {
 		}
 
 		for _, v := range c {
-			ful = append(ful, r.enc(enc, v))
+			ful = append(ful, r.enc(v))
 		}
 	}
 

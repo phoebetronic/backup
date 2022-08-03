@@ -129,8 +129,8 @@ github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
-github.com/phoebetron/series v0.3.2 h1:syHeMQh2ye6YmXTTHpYLXTb3QOeMJxzdMMFa/iK4+lI=
-github.com/phoebetron/series v0.3.2/go.mod h1:mBwvsu6d3BgKe8d4/P+Da5WshpW9oV6wqH1npa1gbwo=
+github.com/phoebetron/series v0.3.3 h1:sKtjoOXwGaN/tglwv6Ql/oMHGdIGWUaLmu4qDT69rS0=
+github.com/phoebetron/series v0.3.3/go.mod h1:Plah9dFS1PUKrGs/Q81pE5bTZ9tcRRME7n/XRqb6NSg=
 github.com/phoebetron/trades v0.3.2 h1:nno+Dgt3vz7UzP5WxuuZl85bWBfg0P/oJXWgK2rMJLQ=
 github.com/phoebetron/trades v0.3.2/go.mod h1:bLLDkpGAYpiZ3E6eJ990EEkwAc+s+wKM+ofc0drqz4E=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

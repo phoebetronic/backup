@@ -1,4 +1,4 @@
-package mod
+package ens
 
 import "github.com/phoebetron/backup/pkg/ind"
 
