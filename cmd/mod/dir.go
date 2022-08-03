@@ -1,4 +1,4 @@
-package win
+package mod
 
 import "os"
 
