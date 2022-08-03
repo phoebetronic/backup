@@ -1,7 +1,7 @@
 package ens
 
-import "github.com/phoebetron/backup/pkg/ind"
+import "github.com/phoebetron/series/buck"
 
 func (r *run) enc(lis []string) []string {
-	return append([]string{ind.EncI()[lis[0]]}, lis[1:]...)
+	return append([]string{buck.Inds(lis[0])}, lis[1:]...)
 }
