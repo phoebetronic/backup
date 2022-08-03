@@ -2,6 +2,8 @@ package win
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/phoebetron/backup/pkg/cli/apicliaws"
@@ -60,6 +62,11 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		fmt.Printf("fetching trades between %s and %s\n", scrfmt(sta), scrfmt(end))
 	}
 
+	var pat string
+	{
+		pat = filepath.Join("dat", r.miscon.Hash())
+	}
+
 	var tra *trades.Trades
 	{
 		tra, err = r.stotra.Search(sta)
@@ -73,7 +80,33 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		fra = tra.Frame(r.misfra)
 	}
 
+	// Since the nature of our buffer implementations is rather dynamic, we need
+	// to know how many financial features we are supposed to produce. We take
+	// all trades of the first 24 hours and pump them through the buffer
+	// implementation created using our desired buffer config in order to get
+	// the most probable requirement amount of features produced within each
+	// window frame of 1 hour.
+	var num int
+	{
+		num = r.num(fra[0:24])
+	}
+
 	for _, f := range fra {
-		r.hou(f)
+		r.raw(pat, num, f)
+	}
+
+	{
+		r.ful(pat)
+	}
+
+	{
+		err := os.RemoveAll(filepath.Join(pat, "raw"))
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	{
+		r.dir(filepath.Join(pat, "mod"))
 	}
 }

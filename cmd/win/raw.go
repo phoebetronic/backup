@@ -2,7 +2,6 @@ package win
 
 import (
 	"fmt"
-	"math"
 	"path/filepath"
 	"time"
 
@@ -11,15 +10,10 @@ import (
 	"github.com/phoebetron/trades/typ/trades"
 )
 
-func (r *run) hou(tra *trades.Trades) {
+func (r *run) raw(pat string, num int, tra *trades.Trades) {
 	var n time.Time
 	{
 		n = time.Now()
-	}
-
-	var p string
-	{
-		p = filepath.Join("dat", r.miscon.Hash())
 	}
 
 	var m map[float32][]buck.Wndw
@@ -33,17 +27,25 @@ func (r *run) hou(tra *trades.Trades) {
 		var s [][]string
 
 		for _, v := range w {
-			s = append(s, v.SE)
+			if len(v.SE) == num {
+				s = append(s, v.SE)
+			} else {
+				fmt.Printf(
+					"ignoring window of length %d due to strict requirement of window length %d\n",
+					len(v.SE),
+					num,
+				)
+			}
 		}
 
-		var f string
+		var n string
 		{
-			f = fmt.Sprintf("%s.%.3f.csv", sgn(b), math.Abs(float64(b)))
+			n = nam(b)
 		}
 
 		var d string
 		{
-			d = filepath.Join(p, "csv", datfmt(tra.ST.AsTime()), clofmt(tra.ST.AsTime()))
+			d = filepath.Join(pat, "raw", datfmt(tra.ST.AsTime()), clofmt(tra.ST.AsTime()))
 		}
 
 		var i ind.Item
@@ -51,7 +53,7 @@ func (r *run) hou(tra *trades.Trades) {
 			i = ind.Item{
 				Buc: b,
 				Cou: len(s),
-				Fil: filepath.Join(d, f),
+				Fil: filepath.Join(d, n),
 				Tim: tra.ST.AsTime(),
 			}
 		}
@@ -65,12 +67,12 @@ func (r *run) hou(tra *trades.Trades) {
 		}
 
 		r.dir(d)
-		r.csv(s, i.Fil)
+		r.wri(s, i.Fil)
 	}
 
 	{
-		r.dir(filepath.Join(p, "ind"))
-		r.ind(filepath.Join(p, "ind", "ind.json"), l)
+		r.dir(filepath.Join(pat, "ind"))
+		r.ind(pat, l)
 	}
 
 	{

@@ -2,8 +2,7 @@ package win
 
 import (
 	"encoding/json"
-	"io/ioutil"
-	"os"
+	"path/filepath"
 
 	"github.com/phoebetron/backup/pkg/ind"
 )
@@ -11,37 +10,26 @@ import (
 func (r *run) ind(p string, l ind.List) {
 	var err error
 
-	var cur []byte
+	var i ind.Index
 	{
-		cur, err = ioutil.ReadFile(p)
-		if os.IsNotExist(err) {
-			cur = []byte(string("[]"))
-		} else if err != nil {
-			panic(err)
-		}
+		i = ind.Read(p)
 	}
 
-	var lis ind.List
 	{
-		err = json.Unmarshal(cur, &lis)
+		i.Lis = append(i.Lis, l...)
+		i.Lis = i.Lis.Sort()
+		i.Sta = ind.StaFroMap(i.Lis.Buck())
+	}
+
+	var b []byte
+	{
+		b, err = json.MarshalIndent(i, "", "  ")
 		if err != nil {
 			panic(err)
 		}
 	}
 
 	{
-		lis = append(lis, l...)
-	}
-
-	var byt []byte
-	{
-		byt, err = json.MarshalIndent(lis.Sort(), "", "  ")
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	{
-		r.fil(p, byt)
+		r.fil(filepath.Join(p, "ind", "ind.json"), b)
 	}
 }

@@ -5,7 +5,7 @@ import (
 	"encoding/csv"
 )
 
-func (r *run) csv(str [][]string, pat string) {
+func (r *run) wri(str [][]string, pat string) {
 	byt := bytes.NewBuffer([]byte{})
 	wri := csv.NewWriter(byt)
 
