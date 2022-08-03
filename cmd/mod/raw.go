@@ -16,14 +16,19 @@ func (r *run) raw(pat string, num int, tra *trades.Trades) {
 		n = time.Now()
 	}
 
-	var m map[float32][]buck.Wndw
+	var m map[string][]buck.Wndw
 	{
-		m = buck.Buck(tra.TR, buck.Prec(), r.miscon, time.Hour)
+		m = buck.Buck(tra.TR, buck.Prec(), time.Hour, r.miscon)
+	}
+
+	a := map[float32][]buck.Wndw{}
+	for _, w := range m[r.miscon.Hash()] {
+		a[w.BU] = append(a[w.BU], w)
 	}
 
 	var c int
 	var l ind.List
-	for b, w := range m {
+	for b, w := range a {
 		var s [][]string
 
 		for _, v := range w {
