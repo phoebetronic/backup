@@ -1,4 +1,4 @@
-package win
+package mod
 
 func sgn(b float32) string {
 	if b == 0 {
