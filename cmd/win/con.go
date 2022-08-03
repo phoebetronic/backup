@@ -36,7 +36,7 @@ func (r *run) connew() buff.Conf {
 			panic(err)
 		}
 
-		fmt.Printf("produced buffer config\n")
+		fmt.Printf("produced buffer config %s\n", con.Hash())
 		fmt.Printf("\n")
 		fmt.Printf("%s\n", byt)
 		fmt.Printf("\n")
