@@ -8,7 +8,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.20
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.1
 	github.com/go-numb/go-ftx v0.0.0-20220423024940-92aa582133ad
-	github.com/phoebetron/series v0.3.4
 	github.com/phoebetron/trades v0.3.2
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
@@ -19,7 +18,6 @@ require (
 
 require (
 	github.com/FZambia/sentinel v1.1.0 // indirect
-	github.com/MicahParks/peakdetect v0.0.6 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.3 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.9 // indirect
@@ -50,7 +48,5 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.34.0 // indirect
-	github.com/xh3b4sd/catch22 v0.1.0 // indirect
 	github.com/xh3b4sd/redigo v0.27.0 // indirect
-	gonum.org/v1/gonum v0.11.0 // indirect
 )

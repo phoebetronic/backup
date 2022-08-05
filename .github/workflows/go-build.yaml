@@ -23,16 +23,7 @@ jobs:
           cache: true
           go-version: "1.18.2"
 
-      - name: "Setup Private Dependencies"
-        env:
-          PAT: "${{ secrets.GOPRIVATE_PAT }}"
-        run: |
-          git config --global url."https://xh3b4sd:${PAT}@github.com".insteadOf "https://github.com"
-
       - name: "Check Go Dependencies"
-        env:
-          GOPRIVATE: "github.com/phoebetron/series"
-          PAT: "${{ secrets.GOPRIVATE_PAT }}"
         run: |
           go mod tidy
           git diff --exit-code
@@ -46,8 +37,6 @@ jobs:
           test -z $(gofmt -l -s .)
 
       - name: "Check Go Linters"
-        env:
-          GL_DEBUG: "loader"
         run: |
           curl -LOs https://github.com/golangci/golangci-lint/releases/download/v1.46.2/golangci-lint-1.46.2-linux-amd64.tar.gz
           tar -xzf golangci-lint-1.46.2-linux-amd64.tar.gz

@@ -3,8 +3,6 @@ package cmd
 import (
 	"github.com/phoebetron/backup/cmd/com"
 	"github.com/phoebetron/backup/cmd/dow"
-	"github.com/phoebetron/backup/cmd/ens"
-	"github.com/phoebetron/backup/cmd/mod"
 	"github.com/phoebetron/backup/cmd/tra"
 	"github.com/phoebetron/backup/cmd/upl"
 	"github.com/phoebetron/backup/cmd/val"
@@ -39,26 +37,6 @@ func New() (*cobra.Command, error) {
 		c := dow.Config{}
 
 		cmdDow, err = dow.New(c)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
-	}
-
-	var cmdEns *cobra.Command
-	{
-		c := ens.Config{}
-
-		cmdEns, err = ens.New(c)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
-	}
-
-	var cmdMod *cobra.Command
-	{
-		c := mod.Config{}
-
-		cmdMod, err = mod.New(c)
 		if err != nil {
 			return nil, tracer.Mask(err)
 		}
@@ -132,8 +110,6 @@ func New() (*cobra.Command, error) {
 	{
 		c.AddCommand(cmdCom)
 		c.AddCommand(cmdDow)
-		c.AddCommand(cmdEns)
-		c.AddCommand(cmdMod)
 		c.AddCommand(cmdTra)
 		c.AddCommand(cmdUpl)
 		c.AddCommand(cmdVal)
