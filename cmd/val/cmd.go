@@ -12,16 +12,16 @@ monthly partitions have to be downloaded from S3. Below is shown how to read
 backup trades of a specific month back from Redis once they have been
 downloaded, in order to check the content of the downloaded partitions.
 
-    backup val --tim 22-06-01
+    backup val --exc ftx --tim 22-06-01
 `
 )
 
 type Config struct{}
 
 func New(config Config) (*cobra.Command, error) {
-	var f *fla
+	var f *flags
 	{
-		f = &fla{}
+		f = &flags{}
 	}
 
 	var c *cobra.Command
@@ -30,7 +30,7 @@ func New(config Config) (*cobra.Command, error) {
 			Use:   use,
 			Short: sho,
 			Long:  lon,
-			Run:   (&run{cmdfla: f}).run,
+			Run:   (&run{flags: f}).run,
 		}
 	}
 

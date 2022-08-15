@@ -11,16 +11,16 @@ const (
 monthly packages of single ticks. Below is shown how to index and upload a
 specific month of trades.
 
-    backup upl --tim 22-06-01
+    backup upl --exc ftx --tim 22-06-01
 `
 )
 
 type Config struct{}
 
 func New(con Config) (*cobra.Command, error) {
-	var f *fla
+	var f *flags
 	{
-		f = &fla{}
+		f = &flags{}
 	}
 
 	var c *cobra.Command
@@ -29,7 +29,7 @@ func New(con Config) (*cobra.Command, error) {
 			Use:   use,
 			Short: sho,
 			Long:  lon,
-			Run:   (&run{cmdfla: f}).run,
+			Run:   (&run{flags: f}).run,
 		}
 	}
 

@@ -1,18 +1,11 @@
 package main
 
 import (
-	"math/rand"
-	"time"
-
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/tracer"
 
 	"github.com/phoebetron/backup/cmd"
 )
-
-func init() {
-	rand.Seed(time.Now().UTC().UnixNano())
-}
 
 func main() {
 	{

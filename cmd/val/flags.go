@@ -6,16 +6,22 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type fla struct {
-	Time time.Time
-	time string
+type flags struct {
+	Exchange string
+	Time     time.Time
+	time     string
 }
 
-func (f *fla) Create(cmd *cobra.Command) {
+func (f *flags) Create(cmd *cobra.Command) {
+	cmd.Flags().StringVarP(&f.Exchange, "exc", "e", "", "The exchange which to validate trades for, e.g. ftx.")
 	cmd.Flags().StringVarP(&f.time, "tim", "t", "", "Time string for backup data start date in form of yy-mm-dd.")
 }
 
-func (f *fla) Verify() {
+func (f *flags) Verify() {
+	if f.Exchange == "" {
+		panic("-e/--exc must not be empty")
+	}
+
 	if f.time == "" {
 		panic("-t/--tim must not be empty")
 	}
@@ -26,7 +32,7 @@ func (f *fla) Verify() {
 			panic(err)
 		}
 
-		f.Time = tim
+		f.Time = tim.UTC()
 	}
 
 	if f.Time.Day() != 1 {

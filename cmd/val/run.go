@@ -5,38 +5,43 @@ import (
 	"time"
 
 	"github.com/phoebetron/backup/pkg/cli/apicliaws"
-	"github.com/phoebetron/trades/sto/tradesredis"
+	"github.com/phoebetron/trades/typ/key"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/framer"
 )
 
 type run struct {
-	cliaws *apicliaws.AWS
-	cmdfla *fla
-	misfra framer.Frames
-	stotra trades.Storage
+	client  *apicliaws.AWS
+	flags   *flags
+	frames  framer.Frames
+	key     *key.Key
+	storage trades.Storage
 }
 
 func (r *run) run(cmd *cobra.Command, args []string) {
 	var err error
 
 	{
-		r.cmdfla.Verify()
+		r.flags.Verify()
 	}
 
 	// --------------------------------------------------------------------- //
 
 	{
-		r.cliaws = apicliaws.Default()
+		r.key = r.newkey()
 	}
 
 	{
-		r.stotra = tradesredis.Default()
+		r.client = apicliaws.Default()
 	}
 
 	{
-		r.misfra = r.franew()
+		r.storage = r.newsto()
+	}
+
+	{
+		r.frames = r.newfra()
 	}
 
 	// --------------------------------------------------------------------- //
@@ -44,8 +49,8 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	var sta time.Time
 	var end time.Time
 	{
-		sta = r.misfra.Min().Sta
-		end = r.misfra.Max().End
+		sta = r.frames.Min().Sta
+		end = r.frames.Max().End
 	}
 
 	// --------------------------------------------------------------------- //
@@ -56,7 +61,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 
 	var tra *trades.Trades
 	{
-		tra, err = r.stotra.Search(sta)
+		tra, err = r.storage.Search(sta)
 		if err != nil {
 			panic(err)
 		}

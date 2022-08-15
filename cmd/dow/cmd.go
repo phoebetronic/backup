@@ -11,16 +11,16 @@ const (
 downloaded in monthly partitions of single ticks. Below is shown how to feed
 backup trades of a specific month back into Redis.
 
-    backup dow --tim 22-06-01
+    backup dow --exc ftx --tim 22-06-01
 `
 )
 
 type Config struct{}
 
 func New(config Config) (*cobra.Command, error) {
-	var f *fla
+	var f *flags
 	{
-		f = &fla{}
+		f = &flags{}
 	}
 
 	var c *cobra.Command
@@ -29,7 +29,7 @@ func New(config Config) (*cobra.Command, error) {
 			Use:   use,
 			Short: sho,
 			Long:  lon,
-			Run:   (&run{cmdfla: f}).run,
+			Run:   (&run{flags: f}).run,
 		}
 	}
 

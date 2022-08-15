@@ -6,10 +6,10 @@ func (r *run) tra() []*trades.Trade {
 	var err error
 
 	var all []*trades.Trade
-	for _, h := range r.misfra {
+	for _, h := range r.frames {
 		var tra *trades.Trades
 		{
-			tra, err = r.stotra.Search(h.Sta)
+			tra, err = r.storage.Search(h.Sta)
 			if err != nil {
 				panic(err)
 			}

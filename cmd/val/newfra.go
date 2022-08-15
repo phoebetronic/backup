@@ -1,4 +1,4 @@
-package upl
+package val
 
 import (
 	"time"
@@ -6,12 +6,12 @@ import (
 	"github.com/xh3b4sd/framer"
 )
 
-func (r *run) franew() framer.Frames {
+func (r *run) newfra() framer.Frames {
 	var err error
 
 	var sta time.Time
 	{
-		sta = r.cmdfla.Time
+		sta = r.flags.Time
 	}
 
 	var end time.Time
@@ -34,7 +34,7 @@ func (r *run) franew() framer.Frames {
 
 	var hfr []framer.Frame
 	{
-		hfr = fra.Exa().Hour()
+		hfr = fra.Exa().Dur(time.Hour)
 	}
 
 	return hfr
