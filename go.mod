@@ -11,7 +11,8 @@ require (
 	github.com/phoebetron/trades v0.3.2
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
-	github.com/xh3b4sd/framer v0.1.0
+	github.com/xh3b4sd/framer v0.2.0
+	github.com/xh3b4sd/redigo v0.27.0
 	github.com/xh3b4sd/tracer v0.5.1
 	google.golang.org/protobuf v1.28.1
 )
@@ -48,5 +49,4 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.34.0 // indirect
-	github.com/xh3b4sd/redigo v0.27.0 // indirect
 )

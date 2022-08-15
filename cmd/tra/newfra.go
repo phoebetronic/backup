@@ -8,12 +8,12 @@ import (
 	"github.com/xh3b4sd/framer"
 )
 
-func (r *run) franew() framer.Frames {
+func (r *run) newfra() framer.Frames {
 	var err error
 
 	var sta time.Time
-	if !r.cmdfla.Time.IsZero() {
-		sta = r.cmdfla.Time
+	if !r.flags.Time.IsZero() {
+		sta = r.flags.Time
 	} else {
 		sta = r.frasta()
 	}
@@ -23,8 +23,8 @@ func (r *run) franew() framer.Frames {
 	}
 
 	var end time.Time
-	if r.cmdfla.Duration != 0 {
-		end = sta.Add(r.cmdfla.Duration)
+	if r.flags.Duration != 0 {
+		end = sta.Add(r.flags.Duration)
 	} else {
 		end = r.fraend()
 	}
@@ -48,7 +48,7 @@ func (r *run) franew() framer.Frames {
 
 	var hfr []framer.Frame
 	{
-		hfr = fra.Exa().Hour()
+		hfr = fra.Exa().Dur(time.Hour)
 	}
 
 	return hfr
@@ -68,7 +68,7 @@ func (r *run) frasta() time.Time {
 
 	var tra *trades.Trade
 	{
-		tra, err = r.stotra.Latest()
+		tra, err = r.storage.Latest()
 		if err != nil {
 			panic(err)
 		}

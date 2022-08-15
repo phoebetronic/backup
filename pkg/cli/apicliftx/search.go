@@ -2,6 +2,7 @@ package apicliftx
 
 import (
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/go-numb/go-ftx/rest/public/markets"
@@ -71,7 +72,6 @@ func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
 	})
 
 	return all
-
 }
 
 func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
@@ -100,11 +100,11 @@ func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 			t.TS = timestamppb.New(r.Time)
 		}
 
-		if r.Side == "buy" {
+		if strings.ToLower(r.Side) == "buy" {
 			t.LO = float32(r.Size)
 		}
 
-		if r.Side == "sell" {
+		if strings.ToLower(r.Side) == "sell" {
 			t.SH = float32(r.Size)
 		}
 

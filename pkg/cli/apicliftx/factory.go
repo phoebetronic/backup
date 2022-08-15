@@ -27,11 +27,24 @@ func Default() *FTX {
 		}
 	}
 
+	var m *key.Key
+	{
+		c := key.Config{
+			Exc: "ftx",
+			Ass: "eth",
+		}
+
+		m, err = key.New(c)
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	var ftx *FTX
 	{
 		c := Config{
 			Client: f.New(),
-			Market: key.Default(),
+			Market: m,
 		}
 
 		ftx = New(c)

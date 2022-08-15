@@ -10,22 +10,22 @@ const (
 	lon = `Backup raw trades data. When starting to backup trades the first time, then the
 starting time of the backup period has to be provided like shown below.
 
-    backup tra --dur 1h --tim 20-01-01
+    backup tra --exc ftx --dur 1h --tim 20-01-01
 
 Further backups continue based on the latest trade known in Redis. For instance,
 in order to backup another hour, starting from where we left off last time, we
 can simply execute the command below.
 
-    backup tra --dur 1h
+    backup tra --exc ftx --dur 1h
 `
 )
 
 type Config struct{}
 
 func New(config Config) (*cobra.Command, error) {
-	var f *fla
+	var f *flags
 	{
-		f = &fla{}
+		f = &flags{}
 	}
 
 	var c *cobra.Command
@@ -34,7 +34,7 @@ func New(config Config) (*cobra.Command, error) {
 			Use:   use,
 			Short: sho,
 			Long:  lon,
-			Run:   (&run{cmdfla: f}).run,
+			Run:   (&run{flags: f}).run,
 		}
 	}
 

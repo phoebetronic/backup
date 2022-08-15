@@ -3,8 +3,8 @@ package tra
 import (
 	"fmt"
 
-	"github.com/phoebetron/backup/pkg/cli/apicliftx"
 	"github.com/phoebetron/trades/sto/tradesredis"
+	"github.com/phoebetron/trades/typ/key"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/framer"
@@ -12,45 +12,56 @@ import (
 )
 
 type run struct {
-	cliftx *apicliftx.FTX
-	cmdfla *fla
-	misfra framer.Frames
-	stotra trades.Storage
+	client  Client
+	flags   *flags
+	frames  framer.Frames
+	key     *key.Key
+	storage trades.Storage
 }
 
 func (r *run) run(cmd *cobra.Command, args []string) {
 	{
-		r.cmdfla.Verify()
+		r.flags.Verify()
 	}
 
 	// --------------------------------------------------------------------- //
 
 	{
-		r.cliftx = apicliftx.Default()
+		r.key = r.newkey()
 	}
 
 	{
-		r.stotra = tradesredis.Default()
+		r.client = r.newcli()
 	}
 
 	{
-		r.misfra = r.franew()
+		r.storage = r.newsto()
+	}
+
+	{
+		r.frames = r.newfra()
 	}
 
 	// --------------------------------------------------------------------- //
 
-	for _, h := range r.misfra {
+	for _, h := range r.frames {
 		{
-			fmt.Printf("fetching trades between %s and %s\n", scrfmt(h.Sta), scrfmt(h.End))
+			fmt.Printf(
+				"fetching %s trades from %s between %s and %s\n",
+				r.client.Market().Ass(),
+				r.client.Market().Exc(),
+				scrfmt(h.Sta),
+				scrfmt(h.End),
+			)
 		}
 
 		tra := &trades.Trades{}
 		{
-			tra.EX = r.stotra.Market().Exc()
-			tra.AS = r.stotra.Market().Ass()
+			tra.EX = r.storage.Market().Exc()
+			tra.AS = r.storage.Market().Ass()
 			tra.ST = timestamppb.New(h.Sta)
 			tra.EN = timestamppb.New(h.End)
-			tra.TR = r.cliftx.Search(h.Sta, h.End)
+			tra.TR = r.client.Search(h.Sta, h.End)
 		}
 
 		if len(tra.TR) == 0 {
@@ -58,9 +69,9 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		}
 
 		{
-			err := r.stotra.Create(h.Sta, tra)
+			err := r.storage.Create(h.Sta, tra)
 			if tradesredis.IsAlreadyExists(err) {
-				err = r.stotra.Update(h.Sta, tra)
+				err = r.storage.Update(h.Sta, tra)
 				if err != nil {
 					panic(err)
 				}
