@@ -2,7 +2,7 @@ package upl
 
 import "github.com/phoebetron/trades/typ/trades"
 
-func (r *run) tra() []*trades.Trade {
+func (r *run) alltra() []*trades.Trade {
 	var err error
 
 	var all []*trades.Trade

@@ -1,4 +1,4 @@
-package dow
+package upl
 
 import (
 	"time"
@@ -7,8 +7,6 @@ import (
 )
 
 func (r *run) newfra() framer.Frames {
-	var err error
-
 	var sta time.Time
 	{
 		sta = r.flags.Time
@@ -19,23 +17,14 @@ func (r *run) newfra() framer.Frames {
 		end = sta.AddDate(0, 1, 0)
 	}
 
-	var fra framer.Interface
+	var fra *framer.Framer
 	{
-		c := framer.Config{
+		fra = framer.New(framer.Config{
 			Sta: sta,
 			End: end,
-		}
-
-		fra, err = framer.New(c)
-		if err != nil {
-			panic(err)
-		}
+			Dur: time.Hour,
+		})
 	}
 
-	var hfr []framer.Frame
-	{
-		hfr = fra.Exa().Dur(time.Hour)
-	}
-
-	return hfr
+	return fra.List()
 }

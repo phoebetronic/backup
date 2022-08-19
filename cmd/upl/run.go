@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/phoebetron/backup/pkg/cli/apicliaws"
-	"github.com/phoebetron/trades/typ/key"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/framer"
@@ -19,7 +18,6 @@ type run struct {
 	client  *apicliaws.AWS
 	flags   *flags
 	frames  framer.Frames
-	key     *key.Key
 	storage trades.Storage
 }
 
@@ -33,28 +31,21 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	// --------------------------------------------------------------------- //
 
 	{
-		r.key = r.newkey()
-	}
-
-	{
 		r.client = apicliaws.Default()
-	}
-
-	{
-		r.storage = r.newsto()
-	}
-
-	{
 		r.frames = r.newfra()
+		r.storage = r.newsto()
 	}
 
 	// --------------------------------------------------------------------- //
 
 	var sta time.Time
+	{
+		sta = r.flags.Time
+	}
+
 	var end time.Time
 	{
-		sta = r.frames.Min().Sta
-		end = r.frames.Max().End
+		end = sta.AddDate(0, 1, 0)
 	}
 
 	// --------------------------------------------------------------------- //
@@ -69,7 +60,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		tra.AS = r.storage.Market().Ass()
 		tra.ST = timestamppb.New(sta)
 		tra.EN = timestamppb.New(end)
-		tra.TR = r.tra()
+		tra.TR = r.alltra()
 	}
 
 	var byt []byte
@@ -119,8 +110,11 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		fmt.Printf("removing trades between %s and %s\n", scrfmt(sta), scrfmt(end))
 	}
 
-	{
-		r.rem()
+	for _, h := range r.frames {
+		err := r.storage.Delete(h.Sta)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	// --------------------------------------------------------------------- //
