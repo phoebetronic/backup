@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/phoebetron/trades/sto/tradesredis"
-	"github.com/phoebetron/trades/typ/key"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/spf13/cobra"
 	"github.com/xh3b4sd/framer"
@@ -14,8 +13,6 @@ import (
 type run struct {
 	client  Client
 	flags   *flags
-	frames  framer.Frames
-	key     *key.Key
 	storage trades.Storage
 }
 
@@ -27,31 +24,30 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	// --------------------------------------------------------------------- //
 
 	{
-		r.key = r.newkey()
-	}
-
-	{
 		r.client = r.newcli()
-	}
-
-	{
 		r.storage = r.newsto()
-	}
-
-	{
-		r.frames = r.newfra()
 	}
 
 	// --------------------------------------------------------------------- //
 
-	for _, h := range r.frames {
+	var fra *framer.Framer
+	{
+		fra = r.newfra()
+	}
+
+	for !fra.Last() {
+		var nex framer.Frame
+		{
+			nex = fra.Next()
+		}
+
 		{
 			fmt.Printf(
 				"fetching %s trades from %s between %s and %s\n",
 				r.client.Market().Ass(),
 				r.client.Market().Exc(),
-				scrfmt(h.Sta),
-				scrfmt(h.End),
+				scrfmt(nex.Sta),
+				scrfmt(nex.End),
 			)
 		}
 
@@ -59,9 +55,9 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		{
 			tra.EX = r.storage.Market().Exc()
 			tra.AS = r.storage.Market().Ass()
-			tra.ST = timestamppb.New(h.Sta)
-			tra.EN = timestamppb.New(h.End)
-			tra.TR = r.client.Search(h.Sta, h.End)
+			tra.ST = timestamppb.New(nex.Sta)
+			tra.EN = timestamppb.New(nex.End)
+			tra.TR = r.client.Search(nex.Sta, nex.End)
 		}
 
 		if len(tra.TR) == 0 {
@@ -69,9 +65,9 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		}
 
 		{
-			err := r.storage.Create(h.Sta, tra)
+			err := r.storage.Create(nex.Sta, tra)
 			if tradesredis.IsAlreadyExists(err) {
-				err = r.storage.Update(h.Sta, tra)
+				err = r.storage.Update(nex.Sta, tra)
 				if err != nil {
 					panic(err)
 				}

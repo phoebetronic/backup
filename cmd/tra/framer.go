@@ -8,9 +8,7 @@ import (
 	"github.com/xh3b4sd/framer"
 )
 
-func (r *run) newfra() framer.Frames {
-	var err error
-
+func (r *run) newfra() *framer.Framer {
 	var sta time.Time
 	if !r.flags.Time.IsZero() {
 		sta = r.flags.Time
@@ -33,25 +31,16 @@ func (r *run) newfra() framer.Frames {
 		end = r.fraend()
 	}
 
-	var fra framer.Interface
+	var fra *framer.Framer
 	{
-		c := framer.Config{
+		fra = framer.New(framer.Config{
 			Sta: sta,
 			End: end,
-		}
-
-		fra, err = framer.New(c)
-		if err != nil {
-			panic(err)
-		}
+			Dur: time.Hour,
+		})
 	}
 
-	var hfr []framer.Frame
-	{
-		hfr = fra.Exa().Dur(time.Hour)
-	}
-
-	return hfr
+	return fra
 }
 
 func (r *run) fraend() time.Time {

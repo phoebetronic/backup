@@ -121,8 +121,8 @@ github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
-github.com/phoebetron/trades v0.3.2 h1:nno+Dgt3vz7UzP5WxuuZl85bWBfg0P/oJXWgK2rMJLQ=
-github.com/phoebetron/trades v0.3.2/go.mod h1:bLLDkpGAYpiZ3E6eJ990EEkwAc+s+wKM+ofc0drqz4E=
+github.com/phoebetron/trades v0.4.1 h1:tbK9cVaIQIzSq7N7IPfAKQAjcEzGWgEF88EoLhxWFF4=
+github.com/phoebetron/trades v0.4.1/go.mod h1:QKwiNWSYnwNGnBfXm+CCiAATJJIYlezDUypyaC2V8c8=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rafaeljusto/redigomock v2.4.0+incompatible h1:d7uo5MVINMxnRr20MxbgDkmZ8QRfevjOVgEa4n0OZyY=
@@ -145,8 +145,8 @@ github.com/valyala/fasthttp v1.34.0/go.mod h1:epZA5N+7pY6ZaEKRmstzOuYJx9HI8DI1oa
 github.com/valyala/tcplisten v1.0.0/go.mod h1:T0xQ8SeCZGxckz9qRXTfG43PvQ/mcWh7FwZEA7Ioqkc=
 github.com/xh3b4sd/budget/v3 v3.2.2 h1:RE9EEuSFaYY7fp+n4k7lBoUHoULpN83aB/ZfKOqNWQ0=
 github.com/xh3b4sd/budget/v3 v3.2.2/go.mod h1:tPs6GKNZYdues0/j37g/aSfb+OOhr3j20zRc3lVflDQ=
-github.com/xh3b4sd/framer v0.2.0 h1:ECkGzmLPDi2dLvhjTt0+O1bo0rRDMzykQKPzrMZhuQw=
-github.com/xh3b4sd/framer v0.2.0/go.mod h1:LXuYCOHKoD8JFfDbJQ7RTFutQiYv80jO7v4lzVxUiYY=
+github.com/xh3b4sd/framer v0.3.1 h1:N4s8nUV6c1r2J0kFCoW7c0307P4urJ0mbduMboIs8SQ=
+github.com/xh3b4sd/framer v0.3.1/go.mod h1:LXuYCOHKoD8JFfDbJQ7RTFutQiYv80jO7v4lzVxUiYY=
 github.com/xh3b4sd/redigo v0.28.0 h1:323NSlgAo7vOiueE20xMBDEKUg2LuA/+lIVxEoE7nVo=
 github.com/xh3b4sd/redigo v0.28.0/go.mod h1:VprAJcTBWLe9n5ZGqd9SJZBv8AATdwH9EjnkTJG97zQ=
 github.com/xh3b4sd/tracer v0.5.1 h1:Y4639ve7PT+1MSiq0I3Yi7vOeJAYBKgzlSR68jA+SuI=

@@ -1,7 +1,8 @@
-package val
+package tra
 
 import (
 	"github.com/phoebetron/trades/sto/tradesredis"
+	"github.com/phoebetron/trades/typ/key"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/xh3b4sd/redigo"
 )
@@ -9,10 +10,23 @@ import (
 func (r *run) newsto() trades.Storage {
 	var err error
 
+	var k *key.Key
+	{
+		c := key.Config{
+			Exc: r.flags.Exchange,
+			Ass: "eth",
+		}
+
+		k, err = key.New(c)
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	var red trades.Storage
 	{
 		c := tradesredis.Config{
-			Key: r.key,
+			Key: k,
 			Sor: redigo.Default().Sorted(),
 		}
 
