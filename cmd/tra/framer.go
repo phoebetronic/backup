@@ -22,7 +22,7 @@ func (r *run) newfra() *framer.Framer {
 
 	var end time.Time
 	if r.flags.Duration != 0 {
-		end = sta.Add(r.flags.Duration)
+		end = sta.Add(r.flags.Duration).Round(time.Hour)
 	} else {
 		end = r.fraend()
 	}
