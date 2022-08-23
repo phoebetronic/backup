@@ -8,18 +8,24 @@ import (
 
 type flags struct {
 	Exchange string
+	Asset    string
 	Time     time.Time
 	time     string
 }
 
 func (f *flags) Create(cmd *cobra.Command) {
-	cmd.Flags().StringVarP(&f.Exchange, "exc", "e", "", "The exchange which to download trades for, e.g. ftx.")
+	cmd.Flags().StringVarP(&f.Exchange, "exc", "e", "", "The exchange to download trades from, e.g. ftx.")
+	cmd.Flags().StringVarP(&f.Asset, "ass", "a", "", "The asset to download trades for, e.g. eth.")
 	cmd.Flags().StringVarP(&f.time, "tim", "t", "", "Time string for backup data start date in form of yy-mm-dd.")
 }
 
 func (f *flags) Verify() {
 	if f.Exchange == "" {
 		panic("-e/--exc must not be empty")
+	}
+
+	if f.Asset == "" {
+		panic("-a/--ass must not be empty")
 	}
 
 	if f.time == "" {

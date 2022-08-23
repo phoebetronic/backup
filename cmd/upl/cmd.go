@@ -11,7 +11,7 @@ const (
 monthly packages of single ticks. Below is shown how to index and upload a
 specific month of trades.
 
-    backup upl --exc ftx --tim 22-06-01
+    backup upl --exc ftx --ass eth --tim 22-06-01
 `
 )
 

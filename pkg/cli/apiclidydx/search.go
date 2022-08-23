@@ -82,7 +82,6 @@ func (d *DyDx) Search(sta time.Time, end time.Time) []*trades.Trade {
 	return all
 }
 
-// https://api.dydx.exchange/v3/trades/ETH-USD?startingBeforeOrAt=2022-07-01T00:00:00.163Z&limit=100
 func (d *DyDx) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	var err error
 

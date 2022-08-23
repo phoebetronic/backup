@@ -14,7 +14,7 @@ func (r *run) newsto() trades.Storage {
 	{
 		c := key.Config{
 			Exc: r.flags.Exchange,
-			Ass: "eth",
+			Ass: r.flags.Asset,
 		}
 
 		k, err = key.New(c)
