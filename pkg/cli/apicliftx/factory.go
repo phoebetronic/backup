@@ -6,7 +6,7 @@ import (
 	"github.com/phoebetron/trades/typ/key"
 )
 
-func Default() *FTX {
+func Default(ass string) *FTX {
 	var err error
 
 	var e env.Env
@@ -31,7 +31,7 @@ func Default() *FTX {
 	{
 		c := key.Config{
 			Exc: "ftx",
-			Ass: "eth",
+			Ass: ass,
 		}
 
 		m, err = key.New(c)

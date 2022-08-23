@@ -12,7 +12,7 @@ monthly partitions have to be downloaded from S3. Below is shown how to read
 backup trades of a specific month back from Redis once they have been
 downloaded, in order to check the content of the downloaded partitions.
 
-    backup val --exc ftx --tim 22-06-01
+    backup val --exc ftx --ass eth --tim 22-06-01
 `
 )
 

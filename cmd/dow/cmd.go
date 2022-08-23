@@ -11,7 +11,7 @@ const (
 downloaded in monthly partitions of single ticks. Below is shown how to feed
 backup trades of a specific month back into Redis.
 
-    backup dow --exc ftx --tim 22-06-01
+    backup dow --exc ftx --ass eth --tim 22-06-01
 `
 )
 

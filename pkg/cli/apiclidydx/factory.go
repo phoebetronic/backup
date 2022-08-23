@@ -4,14 +4,14 @@ import (
 	"github.com/phoebetron/trades/typ/key"
 )
 
-func Default() *DyDx {
+func Default(ass string) *DyDx {
 	var err error
 
 	var m *key.Key
 	{
 		c := key.Config{
 			Exc: "dydx",
-			Ass: "eth",
+			Ass: ass,
 		}
 
 		m, err = key.New(c)
