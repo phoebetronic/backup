@@ -121,8 +121,8 @@ github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
-github.com/phoebetron/trades v0.4.1 h1:tbK9cVaIQIzSq7N7IPfAKQAjcEzGWgEF88EoLhxWFF4=
-github.com/phoebetron/trades v0.4.1/go.mod h1:QKwiNWSYnwNGnBfXm+CCiAATJJIYlezDUypyaC2V8c8=
+github.com/phoebetron/trades v0.4.5 h1:gP5QU054ZLpxPwmKCW2WWy4lEg+i4zSZC9gUBXtGN4o=
+github.com/phoebetron/trades v0.4.5/go.mod h1:QKwiNWSYnwNGnBfXm+CCiAATJJIYlezDUypyaC2V8c8=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rafaeljusto/redigomock v2.4.0+incompatible h1:d7uo5MVINMxnRr20MxbgDkmZ8QRfevjOVgEa4n0OZyY=
