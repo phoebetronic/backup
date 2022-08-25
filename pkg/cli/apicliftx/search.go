@@ -68,7 +68,7 @@ func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
 	}
 
 	sort.SliceStable(all, func(i, j int) bool {
-		return all[i].TS.AsTime().Unix() < all[j].TS.AsTime().Unix()
+		return all[i].TS.AsTime().UnixNano() < all[j].TS.AsTime().UnixNano()
 	})
 
 	return all
