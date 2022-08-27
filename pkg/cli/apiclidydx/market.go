@@ -1,9 +1,7 @@
 package apiclidydx
 
-import (
-	"github.com/phoebetron/trades/typ/key"
-)
+import "github.com/phoebetron/trades/typ/market"
 
-func (d DyDx) Market() *key.Key {
-	return d.market
+func (d DyDx) Market() *market.Market {
+	return d.mar
 }

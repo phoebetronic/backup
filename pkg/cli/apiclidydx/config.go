@@ -1,15 +1,13 @@
 package apiclidydx
 
-import (
-	"github.com/phoebetron/trades/typ/key"
-)
+import "github.com/phoebetron/trades/typ/market"
 
 type Config struct {
-	Market *key.Key
+	Mar *market.Market
 }
 
 func (c Config) Verify() {
-	if c.Market == nil {
-		panic("Market must not be empty")
+	if c.Mar == nil {
+		panic("Config.Mar must not be empty")
 	}
 }

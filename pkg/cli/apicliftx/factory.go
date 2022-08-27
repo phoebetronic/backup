@@ -3,7 +3,7 @@ package apicliftx
 import (
 	"github.com/phoebetron/backup/pkg/fac/clifacftx"
 	"github.com/phoebetron/backup/pkg/mis/env"
-	"github.com/phoebetron/trades/typ/key"
+	"github.com/phoebetron/trades/typ/market"
 )
 
 func Default(ass string) *FTX {
@@ -27,28 +27,12 @@ func Default(ass string) *FTX {
 		}
 	}
 
-	var m *key.Key
-	{
-		c := key.Config{
+	return New(Config{
+		Cli: f.New(),
+		Mar: market.New(market.Config{
 			Exc: "ftx",
 			Ass: ass,
-		}
-
-		m, err = key.New(c)
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	var ftx *FTX
-	{
-		c := Config{
-			Client: f.New(),
-			Market: m,
-		}
-
-		ftx = New(c)
-	}
-
-	return ftx
+			Dur: 1,
+		}),
+	})
 }

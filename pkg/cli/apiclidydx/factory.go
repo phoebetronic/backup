@@ -1,33 +1,13 @@
 package apiclidydx
 
-import (
-	"github.com/phoebetron/trades/typ/key"
-)
+import "github.com/phoebetron/trades/typ/market"
 
 func Default(ass string) *DyDx {
-	var err error
-
-	var m *key.Key
-	{
-		c := key.Config{
+	return New(Config{
+		Mar: market.New(market.Config{
 			Exc: "dydx",
 			Ass: ass,
-		}
-
-		m, err = key.New(c)
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	var dydx *DyDx
-	{
-		c := Config{
-			Market: m,
-		}
-
-		dydx = New(c)
-	}
-
-	return dydx
+			Dur: 1,
+		}),
+	})
 }

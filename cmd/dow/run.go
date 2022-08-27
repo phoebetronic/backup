@@ -28,7 +28,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	// --------------------------------------------------------------------- //
 
 	{
-		r.client = apicliaws.Default()
+		r.client = apicliaws.New()
 		r.storage = r.newsto()
 	}
 

@@ -6,10 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"github.com/xh3b4sd/tracer"
 )
-
-type Config struct{}
 
 // AWS is a container for AWS SDK specific clients. Environment variables as
 // stated below MUST be provided when using this client implementation.
@@ -24,20 +21,18 @@ type AWS struct {
 	S3 *s3.Client
 }
 
-func New(con Config) (*AWS, error) {
+func New() *AWS {
 	var err error
 
 	var c aws.Config
 	{
 		c, err = config.LoadDefaultConfig(context.Background())
 		if err != nil {
-			return nil, tracer.Mask(err)
+			panic(err)
 		}
 	}
 
-	a := &AWS{
+	return &AWS{
 		S3: s3.NewFromConfig(c),
 	}
-
-	return a, nil
 }

@@ -80,12 +80,12 @@ func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	var res *markets.ResponseForTrades
 	{
 		req := &markets.RequestForTrades{
-			ProductCode: f.market.Ass() + "-perp",
+			ProductCode: f.mar.Ass() + "-perp",
 			Start:       sta.Unix(),
 			End:         end.Unix(),
 		}
 
-		res, err = f.client.Trades(req)
+		res, err = f.cli.Trades(req)
 		if err != nil {
 			return nil, tracer.Mask(err)
 		}
