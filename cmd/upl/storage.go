@@ -12,6 +12,7 @@ func (r *run) newsto() trades.Storage {
 		Mar: market.New(market.Config{
 			Exc: r.flags.Exchange,
 			Ass: r.flags.Asset,
+			Dur: 1,
 		}),
 		Sor: redigo.Default().Sorted(),
 	})

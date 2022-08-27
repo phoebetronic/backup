@@ -32,6 +32,7 @@ func Default(ass string) *FTX {
 		Mar: market.New(market.Config{
 			Exc: "ftx",
 			Ass: ass,
+			Dur: 1,
 		}),
 	})
 }
