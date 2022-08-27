@@ -1,9 +1,7 @@
 package apicliftx
 
-import (
-	"github.com/phoebetron/trades/typ/key"
-)
+import "github.com/phoebetron/trades/typ/market"
 
-func (f FTX) Market() *key.Key {
-	return f.market
+func (f FTX) Market() *market.Market {
+	return f.mar
 }

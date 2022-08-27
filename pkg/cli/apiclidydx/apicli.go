@@ -3,12 +3,12 @@ package apiclidydx
 import (
 	"net/http"
 
-	"github.com/phoebetron/trades/typ/key"
+	"github.com/phoebetron/trades/typ/market"
 )
 
 type DyDx struct {
-	client *http.Client
-	market *key.Key
+	cli *http.Client
+	mar *market.Market
 }
 
 func New(con Config) *DyDx {
@@ -16,10 +16,8 @@ func New(con Config) *DyDx {
 		con.Verify()
 	}
 
-	f := &DyDx{
-		client: &http.Client{},
-		market: con.Market,
+	return &DyDx{
+		cli: &http.Client{},
+		mar: con.Mar,
 	}
-
-	return f
 }

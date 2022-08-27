@@ -135,7 +135,7 @@ func (d *DyDx) byt(end time.Time) ([]byte, error) {
 
 	var url string
 	{
-		url = fmt.Sprintf(urlfmt, strings.ToUpper(d.market.Ass()), end.Format(time.RFC3339))
+		url = fmt.Sprintf(urlfmt, strings.ToUpper(d.mar.Ass()), end.Format(time.RFC3339))
 	}
 
 	var req *http.Request
@@ -148,7 +148,7 @@ func (d *DyDx) byt(end time.Time) ([]byte, error) {
 
 	var res *http.Response
 	{
-		res, err = d.client.Do(req)
+		res, err = d.cli.Do(req)
 		if err != nil {
 			return nil, tracer.Mask(err)
 		}

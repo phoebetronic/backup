@@ -2,19 +2,19 @@ package apicliftx
 
 import (
 	"github.com/go-numb/go-ftx/rest"
-	"github.com/phoebetron/trades/typ/key"
+	"github.com/phoebetron/trades/typ/market"
 )
 
 type Config struct {
-	Client *rest.Client
-	Market *key.Key
+	Cli *rest.Client
+	Mar *market.Market
 }
 
 func (c Config) Verify() {
-	if c.Client == nil {
-		panic("Client must not be empty")
+	if c.Cli == nil {
+		panic("Config.Cli must not be empty")
 	}
-	if c.Market == nil {
-		panic("Market must not be empty")
+	if c.Mar == nil {
+		panic("Config.Mar must not be empty")
 	}
 }
