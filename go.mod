@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go-v2 v1.16.12
 	github.com/aws/aws-sdk-go-v2/config v1.17.2
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.28
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.6
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.7
 	github.com/go-numb/go-ftx v0.0.0-20220423024940-92aa582133ad
 	github.com/phoebetron/trades v0.5.1
 	github.com/spf13/cobra v1.5.0
