@@ -1,24 +1,18 @@
 package apiclidydx
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/phoebetron/dydxv3/client/public/trade"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/xh3b4sd/budget/v3"
 	"github.com/xh3b4sd/budget/v3/pkg/breaker"
 	"github.com/xh3b4sd/tracer"
 	"google.golang.org/protobuf/types/known/timestamppb"
-)
-
-const (
-	urlfmt = "https://api.dydx.exchange/v3/trades/%s-USD?startingBeforeOrAt=%s&limit=100"
 )
 
 func (d *DyDx) Search(sta time.Time, end time.Time) []*trades.Trade {
@@ -85,19 +79,19 @@ func (d *DyDx) Search(sta time.Time, end time.Time) []*trades.Trade {
 func (d *DyDx) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	var err error
 
-	var byt []byte
+	var req trade.ListRequest
 	{
-		byt, err = d.byt(end)
-		if err != nil {
-			return nil, tracer.Mask(err)
+		req = trade.ListRequest{
+			Market:             fmt.Sprintf("%s-USD", strings.ToUpper(d.mar.Ass())),
+			StartingBeforeOrAt: end,
 		}
 	}
 
-	var res Response
+	var res trade.ListResponse
 	{
-		err = json.Unmarshal(byt, &res)
+		res, err = d.cli.Pub.Tra.List(req)
 		if err != nil {
-			return nil, tracer.Mask(err)
+			panic(err)
 		}
 	}
 
@@ -128,42 +122,6 @@ func (d *DyDx) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	}
 
 	return tra, nil
-}
-
-func (d *DyDx) byt(end time.Time) ([]byte, error) {
-	var err error
-
-	var url string
-	{
-		url = fmt.Sprintf(urlfmt, strings.ToUpper(d.mar.Ass()), end.Format(time.RFC3339))
-	}
-
-	var req *http.Request
-	{
-		req, err = http.NewRequest("GET", url, nil)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
-	}
-
-	var res *http.Response
-	{
-		res, err = d.cli.Do(req)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
-		defer res.Body.Close()
-	}
-
-	var byt []byte
-	{
-		byt, err = ioutil.ReadAll(res.Body)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
-	}
-
-	return byt, nil
 }
 
 func musf32(s string) float32 {

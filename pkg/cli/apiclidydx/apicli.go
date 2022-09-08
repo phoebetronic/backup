@@ -1,14 +1,13 @@
 package apiclidydx
 
 import (
-	"net/http"
-
+	"github.com/phoebetron/dydxv3/client"
 	"github.com/phoebetron/trades/typ/market"
 )
 
 type DyDx struct {
-	cli *http.Client
-	mar *market.Market
+	cli *client.Client
+	mar market.Market
 }
 
 func New(con Config) *DyDx {
@@ -16,8 +15,13 @@ func New(con Config) *DyDx {
 		con.Verify()
 	}
 
+	var cli *client.Client
+	{
+		cli = client.New(client.Config{})
+	}
+
 	return &DyDx{
-		cli: &http.Client{},
+		cli: cli,
 		mar: con.Mar,
 	}
 }

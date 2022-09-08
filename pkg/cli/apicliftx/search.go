@@ -1,11 +1,12 @@
 package apicliftx
 
 import (
+	"fmt"
 	"sort"
 	"strings"
 	"time"
 
-	"github.com/go-numb/go-ftx/rest/public/markets"
+	"github.com/phoebetron/ftxapi/client/public/trade"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/xh3b4sd/budget/v3"
 	"github.com/xh3b4sd/budget/v3/pkg/breaker"
@@ -77,22 +78,25 @@ func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
 func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	var err error
 
-	var res *markets.ResponseForTrades
+	var req trade.ListRequest
 	{
-		req := &markets.RequestForTrades{
-			ProductCode: f.mar.Ass() + "-perp",
+		req = trade.ListRequest{
+			ProductCode: fmt.Sprintf("%s-PERP", strings.ToUpper(f.mar.Ass())),
 			Start:       sta.Unix(),
 			End:         end.Unix(),
 		}
+	}
 
-		res, err = f.cli.Trades(req)
+	var res trade.ListResponse
+	{
+		res, err = f.cli.Pub.Tra.List(req)
 		if err != nil {
-			return nil, tracer.Mask(err)
+			panic(err)
 		}
 	}
 
 	var tra []*trades.Trade
-	for _, r := range *res {
+	for _, r := range res.Result {
 		t := &trades.Trade{}
 		{
 			t.LI = r.Liquidation

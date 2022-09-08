@@ -1,13 +1,13 @@
 package apicliftx
 
 import (
-	"github.com/go-numb/go-ftx/rest"
+	"github.com/phoebetron/ftxapi/client"
 	"github.com/phoebetron/trades/typ/market"
 )
 
 type FTX struct {
-	cli *rest.Client
-	mar *market.Market
+	cli *client.Client
+	mar market.Market
 }
 
 func New(con Config) *FTX {
@@ -15,8 +15,13 @@ func New(con Config) *FTX {
 		con.Verify()
 	}
 
+	var cli *client.Client
+	{
+		cli = client.New(client.Config{})
+	}
+
 	return &FTX{
-		cli: con.Cli,
+		cli: cli,
 		mar: con.Mar,
 	}
 }
