@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.31
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.9
 	github.com/go-numb/go-ftx v0.0.0-20220423024940-92aa582133ad
-	github.com/phoebetron/trades v0.5.1
+	github.com/phoebetron/trades v0.6.0
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
 	github.com/xh3b4sd/framer v0.3.1
