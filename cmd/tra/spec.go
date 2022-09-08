@@ -8,6 +8,6 @@ import (
 )
 
 type Client interface {
-	Market() *market.Market
+	Market() market.Market
 	Search(sta time.Time, end time.Time) []*trades.Trade
 }

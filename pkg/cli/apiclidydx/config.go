@@ -1,9 +1,11 @@
 package apiclidydx
 
-import "github.com/phoebetron/trades/typ/market"
+import (
+	"github.com/phoebetron/trades/typ/market"
+)
 
 type Config struct {
-	Mar *market.Market
+	Mar market.Market
 }
 
 func (c Config) Verify() {
