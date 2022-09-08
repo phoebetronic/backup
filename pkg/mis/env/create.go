@@ -12,11 +12,6 @@ func Create() Env {
 	}
 
 	{
-		e.FTX.ApiKey = os.Getenv(FtxApiKey)
-		e.FTX.ApiSecret = os.Getenv(FtxApiSecret)
-	}
-
-	{
 		verify(e)
 	}
 
