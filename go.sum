@@ -117,10 +117,10 @@ github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
-github.com/phoebetron/dydxv3 v0.4.1 h1:e4WgU5E9CzSs5+BLJ4MruTZqyQZrjcg24u7tulEO3SA=
-github.com/phoebetron/dydxv3 v0.4.1/go.mod h1:/WXgEtCeEut1R37l1iYm6cod1we7Bpu9wYMHjn/cXEk=
-github.com/phoebetron/ftxapi v0.1.0 h1:DhgE06OXVrBvODcrzOUuuMGj58YplzCJId0nKZtQPTU=
-github.com/phoebetron/ftxapi v0.1.0/go.mod h1:HTzvMuJwZdfLBDqc+Eym3M8yzaw+iWGoRTnFUPnihek=
+github.com/phoebetron/dydxv3 v0.4.3 h1:RyX8jfMSlMekxbGMiT7s+FNsxlPSoQQOqsA0gni677c=
+github.com/phoebetron/dydxv3 v0.4.3/go.mod h1:/WXgEtCeEut1R37l1iYm6cod1we7Bpu9wYMHjn/cXEk=
+github.com/phoebetron/ftxapi v0.1.1 h1:oNKB8vsU5tUxNmVBNK6BH6uPuK6AollaXW5pHebHQEM=
+github.com/phoebetron/ftxapi v0.1.1/go.mod h1:HTzvMuJwZdfLBDqc+Eym3M8yzaw+iWGoRTnFUPnihek=
 github.com/phoebetron/trades v0.6.0 h1:FDfUNQRtC06lADeJAdo34uM19hR3TbSoyIU5Ht5Vc1c=
 github.com/phoebetron/trades v0.6.0/go.mod h1:azXkjKAhGRB7rmx6UyLeq11SS0hZLd1VEaMKj8OU7GI=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
