@@ -83,7 +83,7 @@ func (d *DyDx) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	{
 		req = trade.ListRequest{
 			Market:             fmt.Sprintf("%s-USD", strings.ToUpper(d.mar.Ass())),
-			StartingBeforeOrAt: end,
+			StartingBeforeOrAt: end.Format(time.RFC3339),
 		}
 	}
 

@@ -82,8 +82,8 @@ func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	{
 		req = trade.ListRequest{
 			ProductCode: fmt.Sprintf("%s-PERP", strings.ToUpper(f.mar.Ass())),
-			Start:       sta.Unix(),
-			End:         end.Unix(),
+			StartTime:   sta.Unix(),
+			EndTime:     end.Unix(),
 		}
 	}
 
