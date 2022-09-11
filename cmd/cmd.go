@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/phoebetron/backup/cmd/com"
 	"github.com/phoebetron/backup/cmd/dow"
+	"github.com/phoebetron/backup/cmd/fil"
 	"github.com/phoebetron/backup/cmd/tra"
 	"github.com/phoebetron/backup/cmd/upl"
 	"github.com/phoebetron/backup/cmd/val"
@@ -37,6 +38,16 @@ func New() (*cobra.Command, error) {
 		c := dow.Config{}
 
 		cmdDow, err = dow.New(c)
+		if err != nil {
+			return nil, tracer.Mask(err)
+		}
+	}
+
+	var cmdFil *cobra.Command
+	{
+		c := fil.Config{}
+
+		cmdFil, err = fil.New(c)
 		if err != nil {
 			return nil, tracer.Mask(err)
 		}
@@ -110,6 +121,7 @@ func New() (*cobra.Command, error) {
 	{
 		c.AddCommand(cmdCom)
 		c.AddCommand(cmdDow)
+		c.AddCommand(cmdFil)
 		c.AddCommand(cmdTra)
 		c.AddCommand(cmdUpl)
 		c.AddCommand(cmdVal)
