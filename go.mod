@@ -3,7 +3,7 @@ module github.com/phoebetron/backup
 go 1.18
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.14
+	github.com/aws/aws-sdk-go-v2 v1.16.15
 	github.com/aws/aws-sdk-go-v2/config v1.17.5
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.31
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.9
@@ -34,7 +34,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sso v1.11.21 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.13.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.16.17 // indirect
-	github.com/aws/smithy-go v1.13.2 // indirect
+	github.com/aws/smithy-go v1.13.3 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.2.0 // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.0.1 // indirect
 	github.com/ethereum/go-ethereum v1.10.23 // indirect
