@@ -117,8 +117,8 @@ github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
-github.com/phoebetron/dydxv3 v0.4.4 h1:Spoq7pw9sCdyjeAzIahnY7NFR/yvnBwHH6BJtLU4Qh0=
-github.com/phoebetron/dydxv3 v0.4.4/go.mod h1:BPC5PXlWZr274bFoLwjHqmoPhU1ZCkz78wCSdLJuo/E=
+github.com/phoebetron/dydxv3 v0.4.5 h1:y2t2l2qQpa0VW7Y9jYDuDcvBHUziLoMSQ23A6f2cv+E=
+github.com/phoebetron/dydxv3 v0.4.5/go.mod h1:HI7mJjMXvPYdXgiLCTqIOksCKdVF1LoHj0IH1SxsjUU=
 github.com/phoebetron/ftxapi v0.1.1 h1:oNKB8vsU5tUxNmVBNK6BH6uPuK6AollaXW5pHebHQEM=
 github.com/phoebetron/ftxapi v0.1.1/go.mod h1:HTzvMuJwZdfLBDqc+Eym3M8yzaw+iWGoRTnFUPnihek=
 github.com/phoebetron/trades v0.6.0 h1:FDfUNQRtC06lADeJAdo34uM19hR3TbSoyIU5Ht5Vc1c=
@@ -149,8 +149,8 @@ github.com/xh3b4sd/redigo v0.28.0 h1:323NSlgAo7vOiueE20xMBDEKUg2LuA/+lIVxEoE7nVo
 github.com/xh3b4sd/redigo v0.28.0/go.mod h1:VprAJcTBWLe9n5ZGqd9SJZBv8AATdwH9EjnkTJG97zQ=
 github.com/xh3b4sd/tracer v0.5.1 h1:Y4639ve7PT+1MSiq0I3Yi7vOeJAYBKgzlSR68jA+SuI=
 github.com/xh3b4sd/tracer v0.5.1/go.mod h1:sYg6KI0svCEb2an8Hf0cYR0rOY94bIrN27TRsJi4+x4=
-github.com/yanue/starkex v0.0.0-20211122094927-61a9aa6b8d97 h1:2J/o24Zad7R0J+F/OqMazZHoXJSIpMMBN8PksR8bm4s=
-github.com/yanue/starkex v0.0.0-20211122094927-61a9aa6b8d97/go.mod h1:Owc+hA2CxIsKGVgX6n/KIJtyXxJoAGNcHO+8iyL0J6A=
+github.com/yanue/starkex v0.0.0-20220816084859-199db002c96f h1:EBkD8u6WKxhQHzBWZcy0m2FD01VLOXUzOEtGSXyu7T8=
+github.com/yanue/starkex v0.0.0-20220816084859-199db002c96f/go.mod h1:Owc+hA2CxIsKGVgX6n/KIJtyXxJoAGNcHO+8iyL0J6A=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=

@@ -7,7 +7,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.17.6
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.32
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.10
-	github.com/phoebetron/dydxv3 v0.4.4
+	github.com/phoebetron/dydxv3 v0.4.5
 	github.com/phoebetron/ftxapi v0.1.1
 	github.com/phoebetron/trades v0.6.0
 	github.com/spf13/cobra v1.5.0
@@ -49,7 +49,7 @@ require (
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/yanue/starkex v0.0.0-20211122094927-61a9aa6b8d97 // indirect
+	github.com/yanue/starkex v0.0.0-20220816084859-199db002c96f // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 )
