@@ -2,7 +2,11 @@ package fil
 
 import "time"
 
-func bacfmt(tim time.Time) string {
+func ordfmt(tim time.Time) string {
+	return tim.UTC().Format("06-01-02.15-04-05")
+}
+
+func trafmt(tim time.Time) string {
 	return tim.UTC().Format("06-01-02")
 }
 
