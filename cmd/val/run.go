@@ -38,7 +38,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 
 	// --------------------------------------------------------------------- //
 
-	if r.flags.Kin == "orders" {
+	if r.flags.Kin == "ord" {
 		var sto orders.Storage
 		{
 			sto = ordersredis.New(ordersredis.Config{
@@ -74,7 +74,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		}
 	}
 
-	if r.flags.Kin == "trades" {
+	if r.flags.Kin == "tra" {
 		var sto trades.Storage
 		{
 			sto = tradesredis.New(tradesredis.Config{

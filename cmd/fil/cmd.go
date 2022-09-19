@@ -13,7 +13,12 @@ single ticks. The given time range defines teh trades to write to the given file
 path. Below is shown how to write backup trades within a given time range back
 into local files.
 
-    backup fil --exc ftx --ass eth --sta 22-06-01T01:00:00  --end 22-06-01T07:00:00 --dur 1m --pat /Users/xh3b4sd/phoebetron/001.json
+    backup fil --kin tra --exc ftx --ass eth --sta 22-06-01T01:00:00 --end 22-06-01T07:00:00 --dur 1m --pat /Users/xh3b4sd/phoebetron/001.json
+
+Orders from orderbook backups are partitioned in hours. The command below shows
+how to write a particular hour of orderbook backups back into local files.
+
+    backup fil --kin ord --exc dydx --ass eth --sta 22-09-19T15:00:00 --end 22-09-19T16:00:00 --dur 3s --pat /Users/xh3b4sd/phoebetron/001.json
 `
 )
 
