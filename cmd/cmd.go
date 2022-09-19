@@ -4,6 +4,7 @@ import (
 	"github.com/phoebetron/backup/cmd/com"
 	"github.com/phoebetron/backup/cmd/dow"
 	"github.com/phoebetron/backup/cmd/fil"
+	"github.com/phoebetron/backup/cmd/ord"
 	"github.com/phoebetron/backup/cmd/tra"
 	"github.com/phoebetron/backup/cmd/upl"
 	"github.com/phoebetron/backup/cmd/val"
@@ -48,6 +49,16 @@ func New() (*cobra.Command, error) {
 		c := fil.Config{}
 
 		cmdFil, err = fil.New(c)
+		if err != nil {
+			return nil, tracer.Mask(err)
+		}
+	}
+
+	var cmdOrd *cobra.Command
+	{
+		c := ord.Config{}
+
+		cmdOrd, err = ord.New(c)
 		if err != nil {
 			return nil, tracer.Mask(err)
 		}
@@ -122,6 +133,7 @@ func New() (*cobra.Command, error) {
 		c.AddCommand(cmdCom)
 		c.AddCommand(cmdDow)
 		c.AddCommand(cmdFil)
+		c.AddCommand(cmdOrd)
 		c.AddCommand(cmdTra)
 		c.AddCommand(cmdUpl)
 		c.AddCommand(cmdVal)

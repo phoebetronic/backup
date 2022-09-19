@@ -9,5 +9,5 @@ import (
 
 type Client interface {
 	Market() market.Market
-	Search(sta time.Time, end time.Time) []*trades.Trade
+	Trades(sta time.Time, end time.Time) []*trades.Trade
 }

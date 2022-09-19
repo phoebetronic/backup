@@ -1,12 +1,13 @@
-package apicliftx
+package apiclidydx
 
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
-	"github.com/phoebetron/ftxapi/client/public/trade"
+	"github.com/phoebetron/dydxv3/client/public/trade"
 	"github.com/phoebetron/trades/typ/trades"
 	"github.com/xh3b4sd/budget/v3"
 	"github.com/xh3b4sd/budget/v3/pkg/breaker"
@@ -14,7 +15,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
+func (d *DyDx) Trades(sta time.Time, end time.Time) []*trades.Trade {
 	var err error
 
 	var bre budget.Interface
@@ -41,7 +42,7 @@ func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
 		var tra []*trades.Trade
 		{
 			act := func() error {
-				tra, err = f.search(sta, end)
+				tra, err = d.trades(sta, end)
 				if err != nil {
 					return tracer.Mask(err)
 				}
@@ -59,7 +60,7 @@ func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
 			all = append(all, tra...)
 		}
 
-		if len(tra) < 5000 {
+		if len(tra) < 100 {
 			break
 		}
 
@@ -75,41 +76,44 @@ func (f *FTX) Search(sta time.Time, end time.Time) []*trades.Trade {
 	return all
 }
 
-func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
+func (d *DyDx) trades(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	var err error
 
 	var req trade.ListRequest
 	{
 		req = trade.ListRequest{
-			ProductCode: fmt.Sprintf("%s-PERP", strings.ToUpper(f.mar.Ass())),
-			StartTime:   sta.Unix(),
-			EndTime:     end.Unix(),
+			Market:             fmt.Sprintf("%s-USD", strings.ToUpper(d.mar.Ass())),
+			StartingBeforeOrAt: end.Format(time.RFC3339),
 		}
 	}
 
 	var res trade.ListResponse
 	{
-		res, err = f.cli.Pub.Tra.List(req)
+		res, err = d.cli.Pub.Tra.List(req)
 		if err != nil {
 			panic(err)
 		}
 	}
 
 	var tra []*trades.Trade
-	for _, r := range res.Result {
+	for _, v := range res.Trades {
+		if v.CreatedAt.Before(sta) {
+			continue
+		}
+
 		t := &trades.Trade{}
 		{
-			t.LI = r.Liquidation
-			t.PR = float32(r.Price)
-			t.TS = timestamppb.New(r.Time)
+			t.LI = v.Liquidation
+			t.PR = musf32(v.Price)
+			t.TS = timestamppb.New(v.CreatedAt)
 		}
 
-		if strings.ToLower(r.Side) == "buy" {
-			t.LO = float32(r.Size)
+		if strings.ToLower(v.Side) == "buy" {
+			t.LO = musf32(v.Size)
 		}
 
-		if strings.ToLower(r.Side) == "sell" {
-			t.SH = float32(r.Size)
+		if strings.ToLower(v.Side) == "sell" {
+			t.SH = musf32(v.Size)
 		}
 
 		{
@@ -118,6 +122,15 @@ func (f *FTX) search(sta time.Time, end time.Time) ([]*trades.Trade, error) {
 	}
 
 	return tra, nil
+}
+
+func musf32(s string) float32 {
+	f, e := strconv.ParseFloat(s, 32)
+	if e != nil {
+		panic(e)
+	}
+
+	return float32(f)
 }
 
 func trafir(tra []*trades.Trade) *trades.Trade {

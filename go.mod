@@ -7,9 +7,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.17.6
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.32
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.10
-	github.com/phoebetron/dydxv3 v0.4.5
+	github.com/phoebetron/dydxv3 v0.4.6
 	github.com/phoebetron/ftxapi v0.1.1
-	github.com/phoebetron/trades v0.6.0
+	github.com/phoebetron/trades v0.7.0
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
 	github.com/xh3b4sd/framer v0.3.1
@@ -37,7 +37,7 @@ require (
 	github.com/aws/smithy-go v1.13.3 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.2.0 // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.0.1 // indirect
-	github.com/ethereum/go-ethereum v1.10.23 // indirect
+	github.com/ethereum/go-ethereum v1.10.25 // indirect
 	github.com/go-redsync/redsync/v4 v4.5.1 // indirect
 	github.com/gomodule/redigo v1.8.9 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect

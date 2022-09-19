@@ -57,7 +57,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			tra.AS = r.storage.Market().Ass()
 			tra.ST = timestamppb.New(nex.Sta)
 			tra.EN = timestamppb.New(nex.End)
-			tra.TR = r.client.Search(nex.Sta, nex.End)
+			tra.TR = r.client.Trades(nex.Sta, nex.End)
 		}
 
 		if len(tra.TR) == 0 {
