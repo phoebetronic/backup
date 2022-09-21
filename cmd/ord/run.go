@@ -97,6 +97,10 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			)
 		}
 
+		for i := range o.BU {
+			o.BU[i].MI = o.BU[i].Mid()
+		}
+
 		{
 			err := r.storage.Create(o.ST.AsTime(), o)
 			if tradesredis.IsAlreadyExists(err) {

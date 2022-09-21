@@ -154,9 +154,9 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			})
 		}
 
-		var lis []*orders.Orders
+		var lis []*orders.Bundle
 		for !fra.Last() {
-			lis = append(lis, fra.Next())
+			lis = append(lis, fra.Next().BU...)
 		}
 
 		{
