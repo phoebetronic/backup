@@ -9,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.11
 	github.com/phoebetron/dydxv3 v0.4.6
 	github.com/phoebetron/ftxapi v0.1.1
-	github.com/phoebetron/trades v0.7.0
+	github.com/phoebetron/trades v0.7.1
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
 	github.com/xh3b4sd/framer v0.3.1
