@@ -28,7 +28,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 
 	var sta time.Time
 	{
-		sta = r.flags.Time
+		sta = r.flags.Tim
 	}
 
 	var end time.Time
@@ -43,8 +43,8 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		{
 			sto = ordersredis.New(ordersredis.Config{
 				Mar: market.New(market.Config{
-					Exc: r.flags.Exchange,
-					Ass: r.flags.Asset,
+					Exc: r.flags.Exc,
+					Ass: r.flags.Ass,
 					Dur: 1,
 				}),
 				Sor: redigo.Default().Sorted(),
@@ -79,15 +79,17 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		{
 			sto = tradesredis.New(tradesredis.Config{
 				Mar: market.New(market.Config{
-					Exc: r.flags.Exchange,
-					Ass: r.flags.Asset,
+					Exc: r.flags.Exc,
+					Ass: r.flags.Ass,
 					Dur: 1,
 				}),
 				Sor: redigo.Default().Sorted(),
 			})
 		}
 
-		{
+		if r.flags.Fix {
+			fmt.Printf("fixing trades between %s and %s\n", scrfmt(sta), scrfmt(end))
+		} else {
 			fmt.Printf("checking trades between %s and %s\n", scrfmt(sta), scrfmt(end))
 		}
 
@@ -99,6 +101,66 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			}
 		}
 
+		var sli *Slicer
+		{
+			sli = &Slicer{
+				his: 5 * time.Minute,
+			}
+		}
+
+		var val bool
+		{
+			val = true
+		}
+
+		if r.flags.Fix {
+			var fix []*trades.Trade
+			for _, x := range tra.TR {
+				{
+					sli.Add(x)
+				}
+
+				if x.PR > sli.Avg()*1.10 {
+					continue
+				}
+
+				if x.PR < sli.Avg()*0.90 {
+					continue
+				}
+
+				{
+					fix = append(fix, x)
+				}
+			}
+
+			{
+				tra.TR = fix
+			}
+
+			{
+				err = sto.Update(sta, tra)
+				if err != nil {
+					panic(err)
+				}
+			}
+		} else {
+			for _, x := range tra.TR {
+				{
+					sli.Add(x)
+				}
+
+				if x.PR > sli.Avg()*1.10 {
+					val = false
+					break
+				}
+
+				if x.PR < sli.Avg()*0.90 {
+					val = false
+					break
+				}
+			}
+		}
+
 		{
 			fmt.Printf("EX:    %s\n", tra.EX)
 			fmt.Printf("AS:    %s\n", tra.AS)
@@ -107,6 +169,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			fmt.Printf("TR:    %d\n", len(tra.TR))
 			fmt.Printf("FI:    %s\n", scrfmt(tra.TR[0].TS.AsTime()))
 			fmt.Printf("LA:    %s\n", scrfmt(tra.TR[len(tra.TR)-1].TS.AsTime()))
+			fmt.Printf("VA:    %t\n", val)
 		}
 	}
 }

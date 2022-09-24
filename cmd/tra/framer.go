@@ -36,7 +36,7 @@ func (r *run) newfra() *framer.Framer {
 		fra = framer.New(framer.Config{
 			Sta: sta,
 			End: end,
-			Dur: time.Hour,
+			Len: time.Hour,
 		})
 	}
 

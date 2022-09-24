@@ -150,7 +150,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			fra = ord.Frame(framer.Config{
 				Sta: r.flags.Sta,
 				End: r.flags.End,
-				Dur: r.flags.Dur,
+				Len: r.flags.Dur,
 			})
 		}
 
@@ -240,7 +240,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 			fra = tra.Frame(framer.Config{
 				Sta: r.flags.Sta,
 				End: r.flags.End,
-				Dur: r.flags.Dur,
+				Len: r.flags.Dur,
 			})
 		}
 

@@ -9,10 +9,10 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.11
 	github.com/phoebetron/dydxv3 v0.4.6
 	github.com/phoebetron/ftxapi v0.1.1
-	github.com/phoebetron/trades v0.7.1
+	github.com/phoebetron/trades v0.7.3
 	github.com/spf13/cobra v1.5.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
-	github.com/xh3b4sd/framer v0.3.1
+	github.com/xh3b4sd/framer v0.4.0
 	github.com/xh3b4sd/redigo v0.28.0
 	github.com/xh3b4sd/tracer v0.5.1
 	google.golang.org/protobuf v1.28.1
