@@ -42,11 +42,11 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	var sta time.Time
 	var end time.Time
 	if r.flags.Kin == "ord" {
-		sta = r.flags.Time
+		sta = r.flags.Tim
 		end = sta.Add(time.Hour)
 	}
 	if r.flags.Kin == "tra" {
-		sta = r.flags.Time
+		sta = r.flags.Tim
 		end = sta.AddDate(0, 1, 0)
 	}
 
@@ -55,14 +55,14 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		fra = framer.New(framer.Config{
 			Sta: sta,
 			End: end,
-			Dur: time.Minute,
+			Len: time.Minute,
 		})
 	}
 	if r.flags.Kin == "tra" {
 		fra = framer.New(framer.Config{
 			Sta: sta,
 			End: end,
-			Dur: time.Hour,
+			Len: time.Hour,
 		})
 	}
 
@@ -82,8 +82,8 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		{
 			sto = ordersredis.New(ordersredis.Config{
 				Mar: market.New(market.Config{
-					Exc: r.flags.Exchange,
-					Ass: r.flags.Asset,
+					Exc: r.flags.Exc,
+					Ass: r.flags.Ass,
 					Dur: 1,
 				}),
 				Sor: redigo.Default().Sorted(),
@@ -140,8 +140,8 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		{
 			sto = tradesredis.New(tradesredis.Config{
 				Mar: market.New(market.Config{
-					Exc: r.flags.Exchange,
-					Ass: r.flags.Asset,
+					Exc: r.flags.Exc,
+					Ass: r.flags.Ass,
 					Dur: 1,
 				}),
 				Sor: redigo.Default().Sorted(),
@@ -149,17 +149,31 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		}
 
 		var all []*trades.Trade
-		for _, h := range fra.List() {
-			var tra *trades.Trades
+		if r.flags.Fix {
+			var fix *trades.Trades
 			{
-				tra, err = sto.Search(h.Sta)
+				fix, err = sto.Search(sta)
 				if err != nil {
 					panic(err)
 				}
 			}
 
 			{
-				all = append(all, tra.TR...)
+				all = fix.TR
+			}
+		} else {
+			for _, h := range fra.List() {
+				var tra *trades.Trades
+				{
+					tra, err = sto.Search(h.Sta)
+					if err != nil {
+						panic(err)
+					}
+				}
+
+				{
+					all = append(all, tra.TR...)
+				}
 			}
 		}
 
@@ -211,10 +225,10 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 
 	var pre string
 	if r.flags.Kin == "ord" {
-		pre = fmt.Sprintf("ord-raw.exc-%s.ass-%s", r.flags.Exchange, r.flags.Asset)
+		pre = fmt.Sprintf("ord-raw.exc-%s.ass-%s", r.flags.Exc, r.flags.Ass)
 	}
 	if r.flags.Kin == "tra" {
-		pre = fmt.Sprintf("tra-raw.exc-%s.ass-%s", r.flags.Exchange, r.flags.Asset)
+		pre = fmt.Sprintf("tra-raw.exc-%s.ass-%s", r.flags.Exc, r.flags.Ass)
 	}
 
 	var suf string
