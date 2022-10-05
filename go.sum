@@ -121,8 +121,8 @@ github.com/phoebetron/dydxv3 v0.4.6 h1:ofZ8p8uTdUafDBHTdd0VieUO/g5aSDiKuvW9++/Gv
 github.com/phoebetron/dydxv3 v0.4.6/go.mod h1:UzbdCUCLyo3tsNhLie75AmtrvJbRIekwdyd7P+61lwE=
 github.com/phoebetron/ftxapi v0.1.1 h1:oNKB8vsU5tUxNmVBNK6BH6uPuK6AollaXW5pHebHQEM=
 github.com/phoebetron/ftxapi v0.1.1/go.mod h1:HTzvMuJwZdfLBDqc+Eym3M8yzaw+iWGoRTnFUPnihek=
-github.com/phoebetron/trades v0.7.3 h1:Gdjwwp2csyfxzgvrGE+OQKnwdZ5U9Hcw9AzJauQ33kY=
-github.com/phoebetron/trades v0.7.3/go.mod h1:uwUdR8D/vGwrfjR2fsOi+jkgQiGAG+GUoXbqDmVCsOE=
+github.com/phoebetron/trades v0.7.4 h1:eea4rvODWnImXPpzNtcE+bjkvcldXWRvQfZuKDyhzYQ=
+github.com/phoebetron/trades v0.7.4/go.mod h1:uwUdR8D/vGwrfjR2fsOi+jkgQiGAG+GUoXbqDmVCsOE=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rafaeljusto/redigomock v2.4.0+incompatible h1:d7uo5MVINMxnRr20MxbgDkmZ8QRfevjOVgEa4n0OZyY=
