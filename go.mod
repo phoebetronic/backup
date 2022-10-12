@@ -10,7 +10,7 @@ require (
 	github.com/phoebetron/dydxv3 v0.4.6
 	github.com/phoebetron/ftxapi v0.1.1
 	github.com/phoebetron/trades v0.7.4
-	github.com/spf13/cobra v1.5.0
+	github.com/spf13/cobra v1.6.0
 	github.com/xh3b4sd/budget/v3 v3.2.2
 	github.com/xh3b4sd/framer v0.4.0
 	github.com/xh3b4sd/redigo v0.28.0
@@ -43,7 +43,7 @@ require (
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.0 // indirect
 	github.com/huandu/xstrings v1.3.2 // indirect
-	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/miguelmota/go-solidity-sha3 v0.1.1 // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect
