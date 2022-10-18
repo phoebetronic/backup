@@ -66,6 +66,11 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		})
 	}
 
+	var lis framer.Frames
+	{
+		lis = fra.List()
+	}
+
 	// --------------------------------------------------------------------- //
 
 	{
@@ -91,7 +96,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 		}
 
 		var all []*orders.Bundle
-		for _, h := range fra.List() {
+		for _, h := range lis {
 			var ord *orders.Orders
 			{
 				ord, err = sto.Search(h.Sta)
@@ -126,7 +131,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 				fmt.Printf("removing orders between %s and %s\n", scrfmt(sta), scrfmt(end))
 			}
 
-			for _, h := range fra.List() {
+			for _, h := range lis {
 				err := sto.Delete(h.Sta)
 				if err != nil {
 					panic(err)
@@ -162,7 +167,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 				all = fix.TR
 			}
 		} else {
-			for _, h := range fra.List() {
+			for _, h := range lis {
 				var tra *trades.Trades
 				{
 					tra, err = sto.Search(h.Sta)
@@ -198,7 +203,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 				fmt.Printf("removing trades between %s and %s\n", scrfmt(sta), scrfmt(end))
 			}
 
-			for _, h := range fra.List() {
+			for _, h := range lis {
 				err := sto.Delete(h.Sta)
 				if err != nil {
 					panic(err)
