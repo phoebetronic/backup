@@ -14,7 +14,7 @@ require (
 	github.com/xh3b4sd/budget/v3 v3.3.0
 	github.com/xh3b4sd/framer v0.4.0
 	github.com/xh3b4sd/redigo v0.28.0
-	github.com/xh3b4sd/tracer v0.5.1
+	github.com/xh3b4sd/tracer v0.6.0
 	google.golang.org/protobuf v1.28.1
 )
 
