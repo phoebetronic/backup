@@ -3,7 +3,7 @@ package fil
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"time"
 
@@ -258,7 +258,7 @@ func (r *run) run(cmd *cobra.Command, args []string) {
 	}
 
 	{
-		err := ioutil.WriteFile(r.flags.Pat, byt, 0644)
+		err := os.WriteFile(r.flags.Pat, byt, 0644)
 		if err != nil {
 			panic(err)
 		}

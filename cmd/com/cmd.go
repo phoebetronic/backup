@@ -34,7 +34,7 @@ func New(con Config) (*cobra.Command, error) {
 			Long:                  lon,
 			DisableFlagsInUseLine: true,
 			ValidArgs:             []string{"bash", "fish", "powershell", "zsh"},
-			Args:                  cobra.ExactValidArgs(1),
+			Args:                  cobra.MatchAll(cobra.ExactArgs(1), cobra.OnlyValidArgs),
 			Run:                   (&run{}).run,
 		}
 	}
