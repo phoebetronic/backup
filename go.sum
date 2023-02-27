@@ -121,8 +121,8 @@ github.com/phoebetron/dydxv3 v0.4.6 h1:ofZ8p8uTdUafDBHTdd0VieUO/g5aSDiKuvW9++/Gv
 github.com/phoebetron/dydxv3 v0.4.6/go.mod h1:UzbdCUCLyo3tsNhLie75AmtrvJbRIekwdyd7P+61lwE=
 github.com/phoebetron/ftxapi v0.1.1 h1:oNKB8vsU5tUxNmVBNK6BH6uPuK6AollaXW5pHebHQEM=
 github.com/phoebetron/ftxapi v0.1.1/go.mod h1:HTzvMuJwZdfLBDqc+Eym3M8yzaw+iWGoRTnFUPnihek=
-github.com/phoebetron/trades v0.7.4 h1:eea4rvODWnImXPpzNtcE+bjkvcldXWRvQfZuKDyhzYQ=
-github.com/phoebetron/trades v0.7.4/go.mod h1:uwUdR8D/vGwrfjR2fsOi+jkgQiGAG+GUoXbqDmVCsOE=
+github.com/phoebetron/trades v0.8.0 h1:vIrMnZXBA0P10pUCWduyQXHZ3OUPA0J4y5glV/vgFdk=
+github.com/phoebetron/trades v0.8.0/go.mod h1:TCTJkPRoAIuXrc9OBfyQqT+1/Qglzo5Pa0AdSFPK4RY=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rafaeljusto/redigomock v2.4.0+incompatible h1:d7uo5MVINMxnRr20MxbgDkmZ8QRfevjOVgEa4n0OZyY=
@@ -143,8 +143,8 @@ github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203 h1:QVqDTf3h2WHt08Yu
 github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203/go.mod h1:oqN97ltKNihBbwlX8dLpwxCl3+HnXKV/R0e+sRLd9C8=
 github.com/xh3b4sd/budget/v3 v3.3.0 h1:/mg11kyDuYHI4LOT8hctLsVnK6ZeGN+/Rw5wzZ/Zhlk=
 github.com/xh3b4sd/budget/v3 v3.3.0/go.mod h1:epHdjvXVpg5PE63RcBirhgY8D/vVa5dbXkDjQ/ycT40=
-github.com/xh3b4sd/framer v0.4.0 h1:p3xOz9i45rJIuNUog+o30iMOhzzRac091D1zlRzmXMU=
-github.com/xh3b4sd/framer v0.4.0/go.mod h1:O9mbD97ERLQJ3d8gO7Sq4Hy9WNDoYIT43Z/okh/j+UU=
+github.com/xh3b4sd/framer v0.4.1 h1:GJOD8wfBOOb+kWWPN/XLsYHkmfqaRb1UriBKkA0Uq8Y=
+github.com/xh3b4sd/framer v0.4.1/go.mod h1:GQIfCHoxexuTICSOue0iON1kQ+TDScTmMUo9elu6aBY=
 github.com/xh3b4sd/redigo v0.28.0 h1:323NSlgAo7vOiueE20xMBDEKUg2LuA/+lIVxEoE7nVo=
 github.com/xh3b4sd/redigo v0.28.0/go.mod h1:VprAJcTBWLe9n5ZGqd9SJZBv8AATdwH9EjnkTJG97zQ=
 github.com/xh3b4sd/tracer v0.6.0 h1:WMrNsHcWUaCAqMWXogD7IRKC8F6A9Ar4pDF9WcdZsX0=
